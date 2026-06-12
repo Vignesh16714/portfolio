@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Projects · Pon Vignesh</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #f5f5f0;
+            --bg-card: #e8e8e3;
+            --text: #1a1a1a;
+            --text-muted: #6b6b6b;
+            --border: #d4d4cf;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            padding: 48px;
+            min-height: 100vh;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--text);
+            color: var(--bg);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #6366f1;
+            color: #fff;
+        }
+
+        .page-header {
+            margin-bottom: 48px;
+        }
+
+        .page-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .page-title {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 900;
+            color: var(--text);
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            line-height: 1;
+            position: relative;
+            padding-bottom: 12px;
+            display: inline-block;
+        }
+
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--text);
+        }
+
+        .projects-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+            max-width: 1000px;
+        }
+
+        .project-detail-card {
+            position: relative;
+            background: var(--bg);
+            border: 3px solid var(--text);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 10px 10px 0px 0px var(--text);
+            transition: all 0.35s ease;
+        }
+
+        .project-detail-card:hover {
+            transform: translate(-6px, -6px);
+            box-shadow: 16px 16px 0px 0px var(--text);
+        }
+
+        .project-detail-card:nth-child(1) { border-color: #6366f1; box-shadow: 10px 10px 0px 0px #4338ca; }
+        .project-detail-card:nth-child(2) { border-color: #3b82f6; box-shadow: 10px 10px 0px 0px #1e40af; }
+        .project-detail-card:nth-child(3) { border-color: #10b981; box-shadow: 10px 10px 0px 0px #065f46; }
+        .project-detail-card:nth-child(4) { border-color: #f59e0b; box-shadow: 10px 10px 0px 0px #92400e; }
+
+        .project-detail-card:nth-child(1):hover { border-color: #4f46e5; box-shadow: 16px 16px 0px 0px #312e81; }
+        .project-detail-card:nth-child(2):hover { border-color: #2563eb; box-shadow: 16px 16px 0px 0px #1e3a8a; }
+        .project-detail-card:nth-child(3):hover { border-color: #059669; box-shadow: 16px 16px 0px 0px #064e3b; }
+        .project-detail-card:nth-child(4):hover { border-color: #d97706; box-shadow: 16px 16px 0px 0px #78350f; }
+
+        .project-detail-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+            background: var(--text);
+            color: var(--bg);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .project-detail-body {
+            padding: 32px;
+        }
+
+        .project-detail-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .project-detail-desc {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .project-detail-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .project-detail-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 500;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .project-detail-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .project-detail-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--bg);
+            background: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .project-detail-link:hover {
+            background: #6366f1;
+            color: #fff;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .status-badge.active {
+            background: #16a34a;
+            color: #fff;
+        }
+
+        .status-badge.coming-soon {
+            background: #f59e0b;
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 24px; }
+            .project-detail-body { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        BACK TO HOME
+    </a>
+
+    <div class="page-header">
+        <span class="page-label">// ALL_PROJECTS</span>
+        <h1 class="page-title">PROJECTS</h1>
+    </div>
+
+    <div class="projects-list">
+        <!-- Project 1 -->
+        <div class="project-detail-card">
+            <div class="project-detail-header">
+                <span>PREDICTIVE-MAINTENANCE.APP</span>
+                <span class="status-badge active">● ACTIVE</span>
+            </div>
+            <div class="project-detail-body">
+                <h2 class="project-detail-title">PREDICTIVE MAINTENANCE</h2>
+                <p class="project-detail-desc">
+                    Analyzed industrial sensor data to predict equipment failure using machine learning techniques. 
+                    Built a complete pipeline from data ingestion to model deployment. Achieved 99.66% ROC-AUC with 
+                    XGBoost classifier. Includes Power BI dashboards for real-time monitoring and alerting.
+                </p>
+                <div class="project-detail-tags">
+                    <span class="project-detail-tag">Python</span>
+                    <span class="project-detail-tag">PySpark</span>
+                    <span class="project-detail-tag">XGBoost</span>
+                    <span class="project-detail-tag">Power BI</span>
+                    <span class="project-detail-tag">Pandas</span>
+                    <span class="project-detail-tag">Scikit-learn</span>
+                </div>
+                <div class="project-detail-links">
+                    <a href="https://github.com/Vignesh16714" target="_blank" class="project-detail-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        VIEW CODE
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-detail-card">
+            <div class="project-detail-header">
+                <span>PYTHON-MINI-PROJECTS.APP</span>
+                <span class="status-badge active">● ACTIVE</span>
+            </div>
+            <div class="project-detail-body">
+                <h2 class="project-detail-title">PYTHON MINI PROJECTS</h2>
+                <p class="project-detail-desc">
+                    A collection of CLI-based Python applications built with Object-Oriented Programming principles. 
+                    Includes a Contact Book with CRUD operations and search functionality, plus a Personal Expense 
+                    Tracker with CSV storage, category-based analytics, and monthly reporting.
+                </p>
+                <div class="project-detail-tags">
+                    <span class="project-detail-tag">Python</span>
+                    <span class="project-detail-tag">OOP</span>
+                    <span class="project-detail-tag">File I/O</span>
+                    <span class="project-detail-tag">CSV</span>
+                    <span class="project-detail-tag">CLI</span>
+                </div>
+                <div class="project-detail-links">
+                    <a href="https://github.com/Vignesh16714" target="_blank" class="project-detail-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        VIEW CODE
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-detail-card">
+            <div class="project-detail-header">
+                <span>AWS-DATA-PIPELINE.APP</span>
+                <span class="status-badge coming-soon">● IN PROGRESS</span>
+            </div>
+            <div class="project-detail-body">
+                <h2 class="project-detail-title">AWS DATA PIPELINE</h2>
+                <p class="project-detail-desc">
+                    End-to-end cloud data pipeline architecture. CSV files are uploaded to S3, processed by Lambda 
+                    functions, stored in RDS PostgreSQL, and automated reporting is generated. Built with AWS best 
+                    practices for scalability and cost optimization. Currently in development phase.
+                </p>
+                <div class="project-detail-tags">
+                    <span class="project-detail-tag">AWS S3</span>
+                    <span class="project-detail-tag">Lambda</span>
+                    <span class="project-detail-tag">RDS</span>
+                    <span class="project-detail-tag">boto3</span>
+                    <span class="project-detail-tag">Python</span>
+                    <span class="project-detail-tag">CloudWatch</span>
+                </div>
+                <div class="project-detail-links">
+                    <a href="https://github.com/Vignesh16714" target="_blank" class="project-detail-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        VIEW CODE
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-detail-card">
+            <div class="project-detail-header">
+                <span>BANK-ACCOUNT-SYSTEM.APP</span>
+                <span class="status-badge active">● ACTIVE</span>
+            </div>
+            <div class="project-detail-body">
+                <h2 class="project-detail-title">BANK ACCOUNT SYSTEM</h2>
+                <p class="project-detail-desc">
+                    Full Object-Oriented Programming banking system with Savings and Current account types. 
+                    Features include transaction history, 4% interest calculation, account management, and 
+                    JSON-based persistent storage. Demonstrates advanced OOP concepts like inheritance, 
+                    polymorphism, and encapsulation.
+                </p>
+                <div class="project-detail-tags">
+                    <span class="project-detail-tag">Python</span>
+                    <span class="project-detail-tag">OOP</span>
+                    <span class="project-detail-tag">Inheritance</span>
+                    <span class="project-detail-tag">JSON</span>
+                    <span class="project-detail-tag">CLI</span>
+                </div>
+                <div class="project-detail-links">
+                    <a href="https://github.com/Vignesh16714" target="_blank" class="project-detail-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        VIEW CODE
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
