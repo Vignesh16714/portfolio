@@ -32,8 +32,8 @@
             --bg: #0f0f0f;
             --bg-card: #1a1a1a;
             --text: #ffffff;
-            --text-muted: rgba(255,255,255,0.6);
-            --border: rgba(255,255,255,0.15);
+            --text-muted: rgba(255, 255, 255, 0.6);
+            --border: rgba(255, 255, 255, 0.15);
         }
 
         body {
@@ -75,7 +75,8 @@
         }
 
         .feed-dot {
-            width: 10px; height: 10px;
+            width: 10px;
+            height: 10px;
             background: #22c55e;
             border-radius: 50%;
             animation: pulseDot 2s infinite;
@@ -83,11 +84,22 @@
         }
 
         @keyframes pulseDot {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(0.8); }
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(0.8);
+            }
         }
 
-        .feed-divider { color: #888; }
+        .feed-divider {
+            color: #888;
+        }
 
         .theme-toggle {
             display: inline-flex;
@@ -106,29 +118,42 @@
             transition: all var(--transition-speed) ease;
         }
 
-        .theme-toggle:hover { background: var(--text); color: var(--bg); }
+        .theme-toggle:hover {
+            background: var(--text);
+            color: var(--bg);
+        }
 
         .gear-icon {
-            width: 16px; height: 16px;
+            width: 16px;
+            height: 16px;
             animation: spinGear 4s linear infinite;
         }
 
         @keyframes spinGear {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         .theme-overlay {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
             z-index: 9999;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
 
-        .theme-overlay.active { opacity: 1; }
+        .theme-overlay.active {
+            opacity: 1;
+        }
 
         /* ========== PAGE HEADER ========== */
         .page-header {
@@ -154,7 +179,9 @@
             transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
         }
 
-        .sys-divider { color: #888; }
+        .sys-divider {
+            color: #888;
+        }
 
         .section-label {
             font-family: 'JetBrains Mono', monospace;
@@ -190,8 +217,10 @@
         .page-title::after {
             content: '';
             position: absolute;
-            bottom: 0; left: 0;
-            width: 100%; height: 4px;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
             background: var(--text);
             transition: background var(--transition-speed) ease;
         }
@@ -256,14 +285,17 @@
         }
 
         .online-dot {
-            width: 8px; height: 8px;
+            width: 8px;
+            height: 8px;
             background: #22c55e;
             border-radius: 50%;
             animation: pulseDot 2s infinite;
             box-shadow: 0 0 6px #22c55e;
         }
 
-        .uplink-card-body { padding: 24px; }
+        .uplink-card-body {
+            padding: 24px;
+        }
 
         .ready-for {
             font-family: 'JetBrains Mono', monospace;
@@ -299,9 +331,15 @@
             transition: color var(--transition-speed) ease, border-color var(--transition-speed) ease;
         }
 
-        .contact-detail:last-child { border-bottom: none; }
+        .contact-detail:last-child {
+            border-bottom: none;
+        }
 
-        .contact-detail svg { color: var(--text-muted); flex-shrink: 0; transition: color var(--transition-speed) ease; }
+        .contact-detail svg {
+            color: var(--text-muted);
+            flex-shrink: 0;
+            transition: color var(--transition-speed) ease;
+        }
 
         .contact-detail a {
             color: var(--text);
@@ -309,7 +347,9 @@
             transition: color 0.3s ease;
         }
 
-        .contact-detail a:hover { color: var(--blue-start); }
+        .contact-detail a:hover {
+            color: var(--blue-start);
+        }
 
         /* Social Buttons */
         .social-buttons {
@@ -345,9 +385,23 @@
             box-shadow: 9px 9px 0px 0px var(--text);
         }
 
-        .social-btn.linkedin-btn:hover { background: #0077b5; color: #fff; border-color: #0077b5; box-shadow: 9px 9px 0px 0px #005885; }
-        .social-btn.github-btn:hover { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
-        body.color-solid .social-btn.github-btn:hover { background: #fff; color: #1a1a1a; }
+        .social-btn.linkedin-btn:hover {
+            background: #0077b5;
+            color: #fff;
+            border-color: #0077b5;
+            box-shadow: 9px 9px 0px 0px #005885;
+        }
+
+        .social-btn.github-btn:hover {
+            background: #1a1a1a;
+            color: #fff;
+            border-color: #1a1a1a;
+        }
+
+        body.color-solid .social-btn.github-btn:hover {
+            background: #fff;
+            color: #1a1a1a;
+        }
 
         /* ========== RIGHT PANEL (FORM) ========== */
         .form-card {
@@ -386,7 +440,9 @@
             transition: color var(--transition-speed) ease;
         }
 
-        .form-body { padding: 32px; }
+        .form-body {
+            padding: 32px;
+        }
 
         .form-row {
             display: grid;
@@ -395,8 +451,15 @@
             margin-bottom: 20px;
         }
 
-        .form-group { display: flex; flex-direction: column; gap: 8px; }
-        .form-group.full { grid-column: 1 / -1; }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
 
         .form-label {
             font-family: 'JetBrains Mono', monospace;
@@ -479,8 +542,13 @@
             box-shadow: 2px 2px 0px #92400e;
         }
 
-        .submit-btn svg { transition: transform 0.3s ease; }
-        .submit-btn:hover svg { transform: translateX(4px); }
+        .submit-btn svg {
+            transition: transform 0.3s ease;
+        }
+
+        .submit-btn:hover svg {
+            transform: translateX(4px);
+        }
 
         .form-note {
             font-family: 'JetBrains Mono', monospace;
@@ -496,7 +564,7 @@
             align-items: center;
             gap: 10px;
             padding: 14px 20px;
-            background: rgba(34,197,94,0.1);
+            background: rgba(34, 197, 94, 0.1);
             border: 2px solid #22c55e;
             font-family: 'JetBrains Mono', monospace;
             font-size: 13px;
@@ -506,18 +574,33 @@
             margin-top: 16px;
         }
 
-        .success-msg.show { display: flex; }
+        .success-msg.show {
+            display: flex;
+        }
 
         /* ========== COLOR SOLID overrides for cards ========== */
-        body.color-solid .uplink-card { box-shadow: 8px 8px 0px 0px rgba(255,255,255,0.2); }
-        body.color-solid .form-card { box-shadow: 8px 8px 0px 0px rgba(255,255,255,0.2); }
-        body.color-solid .social-btn { box-shadow: 6px 6px 0px 0px rgba(255,255,255,0.2); }
-        body.color-solid .social-btn:hover { box-shadow: 9px 9px 0px 0px rgba(255,255,255,0.3); }
+        body.color-solid .uplink-card {
+            box-shadow: 8px 8px 0px 0px rgba(255, 255, 255, 0.2);
+        }
+
+        body.color-solid .form-card {
+            box-shadow: 8px 8px 0px 0px rgba(255, 255, 255, 0.2);
+        }
+
+        body.color-solid .social-btn {
+            box-shadow: 6px 6px 0px 0px rgba(255, 255, 255, 0.2);
+        }
+
+        body.color-solid .social-btn:hover {
+            box-shadow: 9px 9px 0px 0px rgba(255, 255, 255, 0.3);
+        }
 
         /* ========== BOTTOM NAV ========== */
         .bottom-nav {
             position: fixed;
-            bottom: 0; left: 0; right: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
             z-index: 100;
             display: flex;
             justify-content: center;
@@ -535,49 +618,141 @@
             letter-spacing: 1px;
             text-transform: uppercase;
             text-decoration: none;
-            border: 2px solid #1a1a1a;
+            background: var(--bg);
+            color: var(--text);
+            border: 2px solid var(--text);
             border-right: none;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .nav-tab:last-child { border-right: 2px solid #1a1a1a; }
-        .nav-tab .tab-num { font-size: 10px; opacity: 0.6; }
-        .nav-tab:hover { transform: translateY(-4px); box-shadow: 0 -4px 15px rgba(0,0,0,0.1); }
+        .nav-tab:last-child {
+            border-right: 2px solid var(--text);
+        }
 
-        .nav-tab.online  { background: #a5f3fc; color: #0e7490; }
-        .nav-tab.home    { background: #1a1a1a; color: #fff; }
-        .nav-tab.about   { background: #fbbf24; color: #1a1a1a; }
-        .nav-tab.work    { background: #34d399; color: #1a1a1a; }
-        .nav-tab.skills  { background: #60a5fa; color: #1a1a1a; }
-        .nav-tab.connect { background: #f87171; color: #fff; border: 3px solid #1a1a1a; border-right: 3px solid #1a1a1a; font-size: 13px; }
+        .nav-tab .tab-num {
+            font-size: 10px;
+            opacity: 0.6;
+        }
 
-        body.color-solid .nav-tab { border-color: #ffffff; }
-        body.color-solid .nav-tab:last-child { border-right: 2px solid #ffffff; }
-        body.color-solid .nav-tab.connect { border-color: #ffffff; border-right: 3px solid #ffffff; }
+        .nav-tab:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Black and White theme (default) */
+        .nav-tab.connect {
+            background: var(--text);
+            color: var(--bg);
+            border: 3px solid var(--text);
+            border-right: 3px solid var(--text);
+            font-size: 13px;
+        }
+
+        /* Color Solid Theme Overrides */
+        body.color-solid .nav-tab.online {
+            background: #a5f3fc;
+            color: #0e7490;
+        }
+
+        body.color-solid .nav-tab.home {
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        body.color-solid .nav-tab.about {
+            background: #fbbf24;
+            color: #1a1a1a;
+        }
+
+        body.color-solid .nav-tab.work {
+            background: #34d399;
+            color: #1a1a1a;
+        }
+
+        body.color-solid .nav-tab.skills {
+            background: #60a5fa;
+            color: #1a1a1a;
+        }
+
+        body.color-solid .nav-tab.connect {
+            background: #f87171;
+            color: #fff;
+        }
+
+        body.color-solid .nav-tab {
+            border-color: #ffffff;
+        }
+
+        body.color-solid .nav-tab:last-child {
+            border-right: 2px solid #ffffff;
+        }
+
+        body.color-solid .nav-tab.connect {
+            border-color: #ffffff;
+            border-right: 3px solid #ffffff;
+        }
 
         /* ========== ANIMATIONS ========== */
         @keyframes slideDown {
-            from { transform: translateY(-20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(16px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .page-header { animation: slideDown 0.6s ease-out; }
-        .left-panel { animation: fadeIn 0.7s 0.2s both; }
-        .form-card { animation: fadeIn 0.7s 0.35s both; }
+        .page-header {
+            animation: slideDown 0.6s ease-out;
+        }
+
+        .left-panel {
+            animation: fadeIn 0.7s 0.2s both;
+        }
+
+        .form-card {
+            animation: fadeIn 0.7s 0.35s both;
+        }
 
         /* ========== RESPONSIVE ========== */
         @media (max-width: 900px) {
-            .connect-layout { grid-template-columns: 1fr; padding: 0 24px; }
-            .page-header { padding: 24px 24px 0; }
-            .form-row { grid-template-columns: 1fr; }
-            .nav-tab { padding: 10px 14px; font-size: 10px; }
-            .nav-tab.connect { font-size: 10px; }
+            .connect-layout {
+                grid-template-columns: 1fr;
+                padding: 0 24px;
+            }
+
+            .page-header {
+                padding: 24px 24px 0;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-tab {
+                padding: 10px 14px;
+                font-size: 10px;
+            }
+
+            .nav-tab.connect {
+                font-size: 10px;
+            }
         }
     </style>
 </head>
@@ -593,9 +768,12 @@
             <span id="feedClock">00:00 IST</span>
         </div>
         <button class="theme-toggle" onclick="toggleTheme()">
-            <svg class="gear-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="gear-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="3"></circle>
-                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                <path
+                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                </path>
             </svg>
             <span id="themeLabel">SYS: BLACK_WHITE</span>
         </button>
@@ -634,18 +812,32 @@
                 </div>
                 <div class="uplink-card-body">
                     <span class="ready-for">READY_FOR</span>
-                    <p class="ready-desc">AI systems, cloud-native data pipelines, research missions, and open-source collaboration.</p>
+                    <p class="ready-desc">AI systems, cloud-native data pipelines, research missions, and open-source
+                        collaboration.</p>
 
                     <div class="contact-detail">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                            </path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
                         <a href="mailto:pongineshw@gmail.com">pongineshw@gmail.com</a>
                     </div>
                     <div class="contact-detail">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
                         <span>Tamil Nadu, India</span>
                     </div>
                     <div class="contact-detail">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
                         <span>Response &lt; 24h</span>
                     </div>
                 </div>
@@ -653,15 +845,18 @@
 
             <!-- Social Buttons -->
             <div class="social-buttons">
-                <a href="https://www.linkedin.com/in/ponvigneshwaran-m-13222b326/" target="_blank" class="social-btn linkedin-btn">
+                <a href="https://www.linkedin.com/in/ponvigneshwaran-m-13222b326/" target="_blank"
+                    class="social-btn linkedin-btn">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        <path
+                            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                     </svg>
                     <span>LINKEDIN</span>
                 </a>
                 <a href="https://github.com/Vignesh16714" target="_blank" class="social-btn github-btn">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        <path
+                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                     </svg>
                     <span>GITHUB</span>
                 </a>
@@ -679,22 +874,26 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label class="form-label">NAME</label>
-                        <input type="text" class="form-input" id="nameInput" placeholder="Enter your full name" autocomplete="off">
+                        <input type="text" class="form-input" id="nameInput" placeholder="Enter your full name"
+                            autocomplete="off">
                     </div>
                     <div class="form-group">
                         <label class="form-label">EMAIL</label>
-                        <input type="email" class="form-input" id="emailInput" placeholder="Enter your email" autocomplete="off">
+                        <input type="email" class="form-input" id="emailInput" placeholder="Enter your email"
+                            autocomplete="off">
                     </div>
                 </div>
                 <div class="form-group" style="margin-bottom:0;">
                     <label class="form-label">MESSAGE</label>
-                    <textarea class="form-textarea" id="messageInput" placeholder="Tell me what you want to build"></textarea>
+                    <textarea class="form-textarea" id="messageInput"
+                        placeholder="Tell me what you want to build"></textarea>
                 </div>
 
                 <div class="form-submit-row">
                     <button class="submit-btn" onclick="handleSubmit()">
                         SEND MESSAGE
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                             <line x1="22" y1="2" x2="11" y2="13"></line>
                             <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
                         </svg>
@@ -703,7 +902,10 @@
                 </div>
 
                 <div class="success-msg" id="successMsg">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
                     TRANSMISSION_SENT — I'll respond within 24 hours.
                 </div>
             </div>
@@ -713,88 +915,89 @@
 
     <!-- BOTTOM NAV -->
     <nav class="bottom-nav">
-        <a href="index.html#hero"  class="nav-tab online"><span>ONLINE</span></a>
-        <a href="index.html#hero"  class="nav-tab home"><span class="tab-num">/ 01</span><span>/HOME</span></a>
+        <a href="index.html#hero" class="nav-tab online"><span>ONLINE</span></a>
+        <a href="index.html#hero" class="nav-tab home"><span class="tab-num">/ 01</span><span>/HOME</span></a>
         <a href="index.html#about" class="nav-tab about"><span class="tab-num">02</span><span>/ABOUT</span></a>
         <a href="index.html#projects" class="nav-tab work"><span class="tab-num">03</span><span>/WORK</span></a>
-        <a href="index.html#skills"   class="nav-tab skills"><span class="tab-num">04</span><span>/SKILLS</span></a>
-        <a href="connect.html"        class="nav-tab connect"><span class="tab-num">/ 05</span><span>/CONNECT</span></a>
+        <a href="index.html#skills" class="nav-tab skills"><span class="tab-num">04</span><span>/SKILLS</span></a>
+        <a href="connect.html" class="nav-tab connect"><span class="tab-num">/ 05</span><span>/CONNECT</span></a>
     </nav>
 
     <script>
-    // ===== LIVE CLOCK =====
-    function updateClock() {
-        const now = new Date();
-        const h = String(now.getHours()).padStart(2,'0');
-        const m = String(now.getMinutes()).padStart(2,'0');
-        document.getElementById('feedClock').textContent = h + ':' + m + ' IST';
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
+        // ===== LIVE CLOCK =====
+        function updateClock() {
+            const now = new Date();
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('feedClock').textContent = h + ':' + m + ' IST';
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
 
-    // ===== THEME TOGGLE =====
-    let isColorSolid = false;
-    const themeOverlay = document.getElementById('themeOverlay');
+        // ===== THEME TOGGLE =====
+        let isColorSolid = false;
+        const themeOverlay = document.getElementById('themeOverlay');
 
-    function toggleTheme() {
-        isColorSolid = !isColorSolid;
-        themeOverlay.style.background = isColorSolid ? '#1a1a1a' : '#f5f5f0';
-        themeOverlay.classList.add('active');
-        setTimeout(() => {
-            if (isColorSolid) {
-                document.body.classList.add('color-solid');
-                document.getElementById('themeLabel').textContent = 'SYS: COLOR_SOLID';
-            } else {
-                document.body.classList.remove('color-solid');
-                document.getElementById('themeLabel').textContent = 'SYS: BLACK_WHITE';
-            }
-        }, 150);
-        setTimeout(() => { themeOverlay.classList.remove('active'); }, 400);
-    }
-
-    // ===== FORM SUBMIT =====
-    function handleSubmit() {
-        const name    = document.getElementById('nameInput').value.trim();
-        const email   = document.getElementById('emailInput').value.trim();
-        const message = document.getElementById('messageInput').value.trim();
-
-        if (!name || !email || !message) {
-            // Shake empty fields
-            [{ id:'nameInput', val:name }, { id:'emailInput', val:email }, { id:'messageInput', val:message }].forEach(f => {
-                if (!f.val) {
-                    const el = document.getElementById(f.id);
-                    el.style.borderColor = '#ef4444';
-                    el.style.boxShadow = '4px 4px 0px #ef4444';
-                    setTimeout(() => {
-                        el.style.borderColor = '';
-                        el.style.boxShadow = '';
-                    }, 2000);
+        function toggleTheme() {
+            isColorSolid = !isColorSolid;
+            themeOverlay.style.background = isColorSolid ? '#1a1a1a' : '#f5f5f0';
+            themeOverlay.classList.add('active');
+            setTimeout(() => {
+                if (isColorSolid) {
+                    document.body.classList.add('color-solid');
+                    document.getElementById('themeLabel').textContent = 'SYS: COLOR_SOLID';
+                } else {
+                    document.body.classList.remove('color-solid');
+                    document.getElementById('themeLabel').textContent = 'SYS: BLACK_WHITE';
                 }
-            });
-            return;
+            }, 150);
+            setTimeout(() => { themeOverlay.classList.remove('active'); }, 400);
         }
 
-        // Build mailto link
-        const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
-        const body    = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-        window.location.href = `mailto:pongineshw@gmail.com?subject=${subject}&body=${body}`;
+        // ===== FORM SUBMIT =====
+        function handleSubmit() {
+            const name = document.getElementById('nameInput').value.trim();
+            const email = document.getElementById('emailInput').value.trim();
+            const message = document.getElementById('messageInput').value.trim();
 
-        // Show success
-        document.getElementById('successMsg').classList.add('show');
-        document.getElementById('nameInput').value    = '';
-        document.getElementById('emailInput').value   = '';
-        document.getElementById('messageInput').value = '';
+            if (!name || !email || !message) {
+                // Shake empty fields
+                [{ id: 'nameInput', val: name }, { id: 'emailInput', val: email }, { id: 'messageInput', val: message }].forEach(f => {
+                    if (!f.val) {
+                        const el = document.getElementById(f.id);
+                        el.style.borderColor = '#ef4444';
+                        el.style.boxShadow = '4px 4px 0px #ef4444';
+                        setTimeout(() => {
+                            el.style.borderColor = '';
+                            el.style.boxShadow = '';
+                        }, 2000);
+                    }
+                });
+                return;
+            }
 
-        setTimeout(() => {
-            document.getElementById('successMsg').classList.remove('show');
-        }, 5000);
-    }
+            // Build mailto link
+            const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
+            const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+            window.location.href = `mailto:pongineshw@gmail.com?subject=${subject}&body=${body}`;
 
-    // Allow Enter key in inputs (but not textarea)
-    document.querySelectorAll('.form-input').forEach(input => {
-        input.addEventListener('keydown', e => { if (e.key === 'Enter') handleSubmit(); });
-    });
+            // Show success
+            document.getElementById('successMsg').classList.add('show');
+            document.getElementById('nameInput').value = '';
+            document.getElementById('emailInput').value = '';
+            document.getElementById('messageInput').value = '';
+
+            setTimeout(() => {
+                document.getElementById('successMsg').classList.remove('show');
+            }, 5000);
+        }
+
+        // Allow Enter key in inputs (but not textarea)
+        document.querySelectorAll('.form-input').forEach(input => {
+            input.addEventListener('keydown', e => { if (e.key === 'Enter') handleSubmit(); });
+        });
     </script>
 
 </body>
+
 </html>
