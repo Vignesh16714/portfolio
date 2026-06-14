@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Viewer · Pon Vignesh</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #f5f5f0;
+            --bg-card: #e8e8e3;
+            --text: #1a1a1a;
+            --text-muted: #6b6b6b;
+            --border: #d4d4cf;
+            --blue-start: #6366f1;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            padding: 40px 48px 80px;
+        }
+
+        /* ========== TOP BAR ========== */
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: var(--text);
+            color: var(--bg);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 3px solid var(--text);
+            box-shadow: 5px 5px 0px var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: var(--blue-start);
+            border-color: var(--blue-start);
+            color: #fff;
+            box-shadow: 5px 5px 0px #4338ca;
+            transform: translate(-2px, -2px);
+        }
+
+        .cert-counter {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .cert-counter span {
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        /* ========== CERT HEADER ========== */
+        .cert-header {
+            margin-bottom: 32px;
+        }
+
+        .cert-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .cert-name {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(24px, 4vw, 48px);
+            font-weight: 900;
+            color: var(--text);
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            line-height: 1.1;
+        }
+
+        .cert-meta-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .cert-issuer-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: var(--text);
+            color: var(--bg);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .cert-cid-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: transparent;
+            color: var(--blue-start);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border: 2px solid var(--blue-start);
+        }
+
+        /* ========== CERT IMAGE VIEWER ========== */
+        .cert-viewer-container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 3px solid var(--text);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 12px 12px 0px 0px var(--text);
+        }
+
+        .cert-viewer-topbar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 20px;
+            background: var(--text);
+            color: var(--bg);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .browser-dot {
+            width: 12px; height: 12px;
+            border-radius: 50%;
+        }
+        .browser-dot.red    { background: #ef4444; }
+        .browser-dot.yellow { background: #eab308; }
+        .browser-dot.green  { background: #22c55e; }
+
+        .viewer-url {
+            margin-left: 12px;
+            opacity: 0.6;
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+
+        .cert-image-wrap {
+            width: 100%;
+            padding: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            min-height: 500px;
+        }
+
+        .cert-image-wrap img {
+            max-width: 100%;
+            max-height: 75vh;
+            object-fit: contain;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+            border: 1px solid var(--border);
+        }
+
+        /* ========== NAV BUTTONS ========== */
+        .cert-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 40px;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            border: 3px solid var(--text);
+            box-shadow: 5px 5px 0px var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn.prev {
+            background: var(--bg-card);
+            color: var(--text);
+        }
+
+        .nav-btn.prev:hover {
+            background: var(--text);
+            color: var(--bg);
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0px var(--text);
+        }
+
+        .nav-btn.next {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        .nav-btn.next:hover {
+            background: var(--blue-start);
+            border-color: var(--blue-start);
+            box-shadow: 7px 7px 0px #4338ca;
+            transform: translate(-2px, -2px);
+        }
+
+        .nav-btn:disabled,
+        .nav-btn.disabled {
+            opacity: 0.35;
+            pointer-events: none;
+            cursor: not-allowed;
+        }
+
+        .nav-dots {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: var(--border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid var(--text);
+        }
+
+        .nav-dot.active {
+            background: var(--text);
+            transform: scale(1.3);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            body { padding: 24px 20px 60px; }
+            .cert-image-wrap { padding: 16px; min-height: 300px; }
+            .nav-btn { padding: 10px 16px; font-size: 11px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <a href="skills.html" class="back-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            BACK TO SKILLS
+        </a>
+        <div class="cert-counter">CERT <span id="currentNum">01</span> / <span id="totalNum">07</span></div>
+    </div>
+
+    <!-- Cert header info -->
+    <div class="cert-header">
+        <div class="cert-label" id="certLabel">// VERIFIED_CREDENTIAL</div>
+        <div class="cert-name" id="certName">Loading...</div>
+        <div class="cert-meta-row">
+            <div class="cert-issuer-badge" id="certIssuer">—</div>
+            <div class="cert-cid-badge" id="certCidBadge" style="display:none;"></div>
+        </div>
+    </div>
+
+    <!-- Certificate image viewer -->
+    <div class="cert-viewer-container">
+        <div class="cert-viewer-topbar">
+            <div class="browser-dot red"></div>
+            <div class="browser-dot yellow"></div>
+            <div class="browser-dot green"></div>
+            <span class="viewer-url" id="viewerUrl">CERT_VIEWER · LOADING...</span>
+        </div>
+        <div class="cert-image-wrap">
+            <img id="certImage" src="" alt="Certificate">
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="cert-nav">
+        <button class="nav-btn prev" id="prevBtn" onclick="navigate(-1)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            PREV
+        </button>
+
+        <div class="nav-dots" id="navDots"></div>
+
+        <button class="nav-btn next" id="nextBtn" onclick="navigate(1)">
+            NEXT
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        const certs = [
+            {
+                id: 1,
+                title: "Python (Basic)",
+                issuer: "HackerRank",
+                cid: "A16A92C145B2",
+                img: "images/certs/cert-1.png"
+            },
+            {
+                id: 2,
+                title: "Python for Data Science",
+                issuer: "Skill India",
+                cid: null,
+                img: "images/certs/cert-2.png"
+            },
+            {
+                id: 3,
+                title: "Security Analyst Certificate Programme",
+                issuer: "Skill India",
+                cid: null,
+                img: "images/certs/cert-3.png"
+            },
+            {
+                id: 4,
+                title: "AI - DevOps Engineering Foundation",
+                issuer: "Skill India",
+                cid: null,
+                img: "images/certs/cert-4.png"
+            },
+            {
+                id: 5,
+                title: "AI - DevOps Engineering Foundation Course",
+                issuer: "Reliance Foundation",
+                cid: "RFSA000518291",
+                img: "images/certs/cert-5.png"
+            },
+            {
+                id: 6,
+                title: "Python for Data Science (Elite)",
+                issuer: "NPTEL",
+                cid: null,
+                img: "images/certs/cert-6.png"
+            },
+            {
+                id: 7,
+                title: "Python for Data Science Course",
+                issuer: "Reliance Foundation",
+                cid: "RFSA000178772",
+                img: "images/certs/cert-7.png"
+            }
+        ];
+
+        let currentIndex = 0;
+
+        // Read ?cert= from URL
+        const params = new URLSearchParams(window.location.search);
+        const certParam = parseInt(params.get('cert'));
+        if (certParam && certParam >= 1 && certParam <= certs.length) {
+            currentIndex = certParam - 1;
+        }
+
+        // Build nav dots
+        const dotsContainer = document.getElementById('navDots');
+        certs.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.className = 'nav-dot' + (i === currentIndex ? ' active' : '');
+            dot.onclick = () => goTo(i);
+            dotsContainer.appendChild(dot);
+        });
+
+        function render() {
+            const c = certs[currentIndex];
+
+            document.getElementById('certName').textContent = c.title.toUpperCase();
+            document.getElementById('certIssuer').textContent = c.issuer;
+            document.getElementById('certImage').src = c.img;
+            document.getElementById('certImage').alt = c.title;
+            document.getElementById('currentNum').textContent = String(currentIndex + 1).padStart(2, '0');
+            document.getElementById('totalNum').textContent = String(certs.length).padStart(2, '0');
+            document.getElementById('viewerUrl').textContent = `CERT_${String(currentIndex + 1).padStart(2,'0')} · ${c.issuer.toUpperCase()} · VERIFIED`;
+            document.title = `${c.title} · Pon Vignesh`;
+
+            // CID badge
+            const cidBadge = document.getElementById('certCidBadge');
+            if (c.cid) {
+                cidBadge.style.display = 'inline-flex';
+                cidBadge.textContent = `CID: ${c.cid}`;
+            } else {
+                cidBadge.style.display = 'none';
+            }
+
+            // Prev/Next buttons
+            document.getElementById('prevBtn').classList.toggle('disabled', currentIndex === 0);
+            document.getElementById('nextBtn').classList.toggle('disabled', currentIndex === certs.length - 1);
+
+            // Dots
+            document.querySelectorAll('.nav-dot').forEach((d, i) => {
+                d.classList.toggle('active', i === currentIndex);
+            });
+
+            // Update URL without reload
+            history.replaceState(null, '', `cert-view.html?cert=${currentIndex + 1}`);
+        }
+
+        function navigate(dir) {
+            const next = currentIndex + dir;
+            if (next >= 0 && next < certs.length) goTo(next);
+        }
+
+        function goTo(index) {
+            currentIndex = index;
+            render();
+        }
+
+        // Keyboard arrow navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft')  navigate(-1);
+            if (e.key === 'ArrowRight') navigate(1);
+        });
+
+        // Initial render
+        render();
+    </script>
+
+</body>
+</html>
