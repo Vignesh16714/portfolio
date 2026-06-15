@@ -114,11 +114,13 @@
         .project-detail-card:nth-child(2) { border-color: #3b82f6; box-shadow: 10px 10px 0px 0px #1e40af; }
         .project-detail-card:nth-child(3) { border-color: #10b981; box-shadow: 10px 10px 0px 0px #065f46; }
         .project-detail-card:nth-child(4) { border-color: #f59e0b; box-shadow: 10px 10px 0px 0px #92400e; }
+        .project-detail-card:nth-child(5) { border-color: #8b5cf6; box-shadow: 10px 10px 0px 0px #5b21b6; }
 
         .project-detail-card:nth-child(1):hover { border-color: #4f46e5; box-shadow: 16px 16px 0px 0px #312e81; }
         .project-detail-card:nth-child(2):hover { border-color: #2563eb; box-shadow: 16px 16px 0px 0px #1e3a8a; }
         .project-detail-card:nth-child(3):hover { border-color: #059669; box-shadow: 16px 16px 0px 0px #064e3b; }
         .project-detail-card:nth-child(4):hover { border-color: #d97706; box-shadow: 16px 16px 0px 0px #78350f; }
+        .project-detail-card:nth-child(5):hover { border-color: #7c3aed; box-shadow: 16px 16px 0px 0px #4c1d95; }
 
         .project-detail-header {
             display: flex;
@@ -223,6 +225,39 @@
             color: #fff;
         }
 
+        .status-badge.archived {
+            background: #6b6b6b;
+            color: #fff;
+        }
+
+        /* Sub-section styling for detailed project breakdown */
+        .project-detail-section {
+            margin-bottom: 20px;
+        }
+
+        .project-detail-section-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .project-detail-note {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            padding: 12px 16px;
+            background: var(--bg-card);
+            border-left: 3px solid #6b6b6b;
+            margin-bottom: 20px;
+        }
+
         @media (max-width: 768px) {
             body { padding: 24px; }
             .project-detail-body { padding: 20px; }
@@ -244,7 +279,8 @@
     </div>
 
     <div class="projects-list">
-        <!-- Project 1 -->
+
+        <!-- Project 1: Predictive Maintenance -->
         <div class="project-detail-card">
             <div class="project-detail-header">
                 <span>PREDICTIVE-MAINTENANCE.APP</span>
@@ -253,8 +289,8 @@
             <div class="project-detail-body">
                 <h2 class="project-detail-title">PREDICTIVE MAINTENANCE</h2>
                 <p class="project-detail-desc">
-                    Analyzed industrial sensor data to predict equipment failure using machine learning techniques. 
-                    Built a complete pipeline from data ingestion to model deployment. Achieved 99.66% ROC-AUC with 
+                    Analyzed industrial sensor data to predict equipment failure using machine learning techniques.
+                    Built a complete pipeline from data ingestion to model deployment. Achieved 99.66% ROC-AUC with
                     XGBoost classifier. Includes Power BI dashboards for real-time monitoring and alerting.
                 </p>
                 <div class="project-detail-tags">
@@ -274,7 +310,63 @@
             </div>
         </div>
 
-        <!-- Project 2 -->
+        <!-- Project 2: Fullstack Portfolio (NEW — inserted as 2nd) -->
+        <div class="project-detail-card">
+            <div class="project-detail-header">
+                <span>FULLSTACK-PORTFOLIO.APP</span>
+                <span class="status-badge active">● ACTIVE</span>
+            </div>
+            <div class="project-detail-body">
+                <h2 class="project-detail-title">FULLSTACK PORTFOLIO</h2>
+                <p class="project-detail-desc">
+                    Designed and deployed a fullstack personal portfolio website to showcase skills, projects, and career journey.
+                    The application integrates a responsive frontend, dynamic backend, and a secure admin dashboard —
+                    all hosted on AWS EC2 for real-time availability.
+                </p>
+
+                <div class="project-detail-section">
+                    <div class="project-detail-section-title">⚙ TECH STACK & FEATURES</div>
+                    <p class="project-detail-desc" style="margin-bottom:8px;">
+                        Backend: Python Flask REST API serving dynamic content.<br>
+                        Data Layer: JSON-based content management system.<br>
+                        Frontend: Responsive portfolio fetching live API data.<br>
+                        Admin Dashboard: Password-protected CMS for real-time updates.
+                    </p>
+                </div>
+
+                <div class="project-detail-section">
+                    <div class="project-detail-section-title">☁ CLOUD SERVICES (AWS)</div>
+                    <p class="project-detail-desc" style="margin-bottom:8px;">
+                        EC2 (t3.micro) → Hosting Flask backend · IAM → Configured secure roles & CLI access<br>
+                        Security Groups → Managed inbound traffic rules · Elastic IP → Permanent static IP assignment<br>
+                        SSH & SCP → Deployment & server management · systemd → Ensured Flask runs 24/7
+                    </p>
+                </div>
+
+                <div class="project-detail-note">
+                    📌 Note: The live demo was hosted on AWS EC2 Free Tier and has now been archived. Full source code and deployment steps remain available on GitHub.
+                </div>
+
+                <div class="project-detail-tags">
+                    <span class="project-detail-tag">Python Flask</span>
+                    <span class="project-detail-tag">AWS EC2</span>
+                    <span class="project-detail-tag">REST API</span>
+                    <span class="project-detail-tag">JSON CMS</span>
+                    <span class="project-detail-tag">IAM</span>
+                    <span class="project-detail-tag">Elastic IP</span>
+                    <span class="project-detail-tag">systemd</span>
+                    <span class="project-detail-tag">SSH / SCP</span>
+                </div>
+                <div class="project-detail-links">
+                    <a href="https://github.com/Vignesh16714/portfolio-fullstack" target="_blank" class="project-detail-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        VIEW CODE
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 3: Python Mini Projects -->
         <div class="project-detail-card">
             <div class="project-detail-header">
                 <span>PYTHON-MINI-PROJECTS.APP</span>
@@ -283,8 +375,8 @@
             <div class="project-detail-body">
                 <h2 class="project-detail-title">PYTHON MINI PROJECTS</h2>
                 <p class="project-detail-desc">
-                    A collection of CLI-based Python applications built with Object-Oriented Programming principles. 
-                    Includes a Contact Book with CRUD operations and search functionality, plus a Personal Expense 
+                    A collection of CLI-based Python applications built with Object-Oriented Programming principles.
+                    Includes a Contact Book with CRUD operations and search functionality, plus a Personal Expense
                     Tracker with CSV storage, category-based analytics, and monthly reporting.
                 </p>
                 <div class="project-detail-tags">
@@ -303,7 +395,7 @@
             </div>
         </div>
 
-        <!-- Project 3 -->
+        <!-- Project 4: AWS Data Pipeline -->
         <div class="project-detail-card">
             <div class="project-detail-header">
                 <span>AWS-DATA-PIPELINE.APP</span>
@@ -312,8 +404,8 @@
             <div class="project-detail-body">
                 <h2 class="project-detail-title">AWS DATA PIPELINE</h2>
                 <p class="project-detail-desc">
-                    End-to-end cloud data pipeline architecture. CSV files are uploaded to S3, processed by Lambda 
-                    functions, stored in RDS PostgreSQL, and automated reporting is generated. Built with AWS best 
+                    End-to-end cloud data pipeline architecture. CSV files are uploaded to S3, processed by Lambda
+                    functions, stored in RDS PostgreSQL, and automated reporting is generated. Built with AWS best
                     practices for scalability and cost optimization. Currently in development phase.
                 </p>
                 <div class="project-detail-tags">
@@ -333,7 +425,7 @@
             </div>
         </div>
 
-        <!-- Project 4 -->
+        <!-- Project 5: Bank Account System -->
         <div class="project-detail-card">
             <div class="project-detail-header">
                 <span>BANK-ACCOUNT-SYSTEM.APP</span>
@@ -342,9 +434,9 @@
             <div class="project-detail-body">
                 <h2 class="project-detail-title">BANK ACCOUNT SYSTEM</h2>
                 <p class="project-detail-desc">
-                    Full Object-Oriented Programming banking system with Savings and Current account types. 
-                    Features include transaction history, 4% interest calculation, account management, and 
-                    JSON-based persistent storage. Demonstrates advanced OOP concepts like inheritance, 
+                    Full Object-Oriented Programming banking system with Savings and Current account types.
+                    Features include transaction history, 4% interest calculation, account management, and
+                    JSON-based persistent storage. Demonstrates advanced OOP concepts like inheritance,
                     polymorphism, and encapsulation.
                 </p>
                 <div class="project-detail-tags">
@@ -362,6 +454,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </body>
 </html>
