@@ -791,46 +791,6 @@
             box-shadow: 16px 16px 0px 0px var(--text);
         }
 
-        .project-card:nth-child(1) {
-            border-color: #6366f1;
-            box-shadow: 10px 10px 0px 0px #4338ca;
-        }
-
-        .project-card:nth-child(2) {
-            border-color: #3b82f6;
-            box-shadow: 10px 10px 0px 0px #1e40af;
-        }
-
-        .project-card:nth-child(3) {
-            border-color: #10b981;
-            box-shadow: 10px 10px 0px 0px #065f46;
-        }
-
-        .project-card:nth-child(4) {
-            border-color: #f59e0b;
-            box-shadow: 10px 10px 0px 0px #92400e;
-        }
-
-        .project-card:nth-child(1):hover {
-            border-color: #4f46e5;
-            box-shadow: 16px 16px 0px 0px #312e81;
-        }
-
-        .project-card:nth-child(2):hover {
-            border-color: #2563eb;
-            box-shadow: 16px 16px 0px 0px #1e3a8a;
-        }
-
-        .project-card:nth-child(3):hover {
-            border-color: #059669;
-            box-shadow: 16px 16px 0px 0px #064e3b;
-        }
-
-        .project-card:nth-child(4):hover {
-            border-color: #d97706;
-            box-shadow: 16px 16px 0px 0px #78350f;
-        }
-
         .browser-frame {
             position: relative;
             background: var(--bg-card);
@@ -1247,6 +1207,157 @@
             border-color: var(--text);
         }
 
+        /* ========== EXPERIENCE SECTION ========== */
+        .experience-timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding-left: 40px;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--text);
+            transition: background var(--transition-speed) ease;
+        }
+
+        .exp-entry {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .exp-entry::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 24px;
+            width: 14px;
+            height: 14px;
+            background: var(--text);
+            border: 3px solid var(--bg);
+            border-radius: 50%;
+            transition: background var(--transition-speed) ease, border-color var(--transition-speed) ease;
+            z-index: 2;
+        }
+
+        .exp-entry.current::before {
+            background: #22c55e;
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+        }
+
+        .exp-card {
+            background: var(--bg);
+            border: 3px solid var(--text);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 8px 8px 0px 0px var(--text);
+            transition: all 0.35s ease;
+        }
+
+        .exp-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 12px 12px 0px 0px var(--text);
+        }
+
+        .exp-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 20px;
+            background: var(--text);
+            color: var(--bg);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+        }
+
+        .exp-status-badge {
+            padding: 4px 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 4px;
+        }
+
+        .exp-status-badge.current {
+            background: #22c55e;
+            color: #fff;
+        }
+
+        .exp-status-badge.archive {
+            background: #6b6b6b;
+            color: #fff;
+        }
+
+        .exp-card-body {
+            padding: 24px;
+        }
+
+        .exp-role {
+            font-family: 'Inter', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .exp-company {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--blue-start);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .exp-duration {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .exp-desc {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 16px;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .exp-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .exp-tag {
+            padding: 5px 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 500;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
         /* ========== ACADEMICS SECTION ========== */
         .academics-section {
             position: relative;
@@ -1561,12 +1672,12 @@
 
         /* ========== COLOR SOLID THEME OVERRIDES ========== */
         body.color-solid {
-            --bg: #f5f5f0;
-            --bg-card: #e8e8e3;
-            --text: #1a1a1a;
-            --text-muted: rgba(255, 255, 255, 0.7);
-            --border: rgba(255, 255, 255, 0.2);
-            --stat-sublabel: rgba(255, 255, 255, 0.8);
+            --bg: #0f0f0f;
+            --bg-card: #1a1a1a;
+            --text: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.6);
+            --border: rgba(255, 255, 255, 0.15);
+            --stat-sublabel: rgba(255, 255, 255, 0.7);
         }
 
         body.color-solid .stat-card:nth-child(1) {
@@ -1637,58 +1748,308 @@
             transform: translateY(-4px);
         }
 
-        body.color-solid .info-text,
-        body.color-solid .role-container {
-            color: var(--text-muted);
-        }
-
-        body.color-solid .role-text {
-            color: var(--text);
-        }
-
+        /* Project Card Color Overrides (Solid Theme Only) */
         body.color-solid .project-card:nth-child(1) {
             border-color: #6366f1;
-            box-shadow: 10px 10px 0px 0px #312e81;
+            box-shadow: 10px 10px 0px 0px #4338ca;
         }
 
         body.color-solid .project-card:nth-child(2) {
             border-color: #3b82f6;
-            box-shadow: 10px 10px 0px 0px #1e3a8a;
+            box-shadow: 10px 10px 0px 0px #1e40af;
         }
 
         body.color-solid .project-card:nth-child(3) {
             border-color: #10b981;
-            box-shadow: 10px 10px 0px 0px #064e3b;
+            box-shadow: 10px 10px 0px 0px #065f46;
         }
 
         body.color-solid .project-card:nth-child(4) {
             border-color: #f59e0b;
-            box-shadow: 10px 10px 0px 0px #78350f;
+            box-shadow: 10px 10px 0px 0px #92400e;
         }
 
         body.color-solid .project-card:nth-child(1):hover {
             border-color: #4f46e5;
-            box-shadow: 16px 16px 0px 0px #1e1b4b;
+            box-shadow: 16px 16px 0px 0px #312e81;
         }
 
         body.color-solid .project-card:nth-child(2):hover {
             border-color: #2563eb;
-            box-shadow: 16px 16px 0px 0px #172554;
+            box-shadow: 16px 16px 0px 0px #1e3a8a;
         }
 
         body.color-solid .project-card:nth-child(3):hover {
             border-color: #059669;
-            box-shadow: 16px 16px 0px 0px #022c22;
+            box-shadow: 16px 16px 0px 0px #064e3b;
         }
 
         body.color-solid .project-card:nth-child(4):hover {
             border-color: #d97706;
-            box-shadow: 16px 16px 0px 0px #451a03;
+            box-shadow: 16px 16px 0px 0px #78350f;
         }
 
-        body.color-solid .project-tag {
-            background: var(--bg-card);
-            border-color: var(--border);
+        /* Experience Cards Color Overrides */
+        body.color-solid .exp-entry:nth-child(1) .exp-card {
+            border-color: #22c55e;
+            box-shadow: 10px 10px 0px 0px #15803d;
+        }
+
+        body.color-solid .exp-entry:nth-child(1) .exp-card-header {
+            background: #22c55e;
+            color: #fff;
+        }
+
+        body.color-solid .exp-entry:nth-child(1) .exp-card:hover {
+            box-shadow: 16px 16px 0px 0px #064e3b;
+        }
+
+        body.color-solid .exp-entry:nth-child(1) .exp-company {
+            color: #22c55e;
+        }
+
+        body.color-solid .exp-entry:nth-child(2) .exp-card {
+            border-color: #6366f1;
+            box-shadow: 10px 10px 0px 0px #4338ca;
+        }
+
+        body.color-solid .exp-entry:nth-child(2) .exp-card-header {
+            background: #6366f1;
+            color: #fff;
+        }
+
+        body.color-solid .exp-entry:nth-child(2) .exp-card:hover {
+            box-shadow: 16px 16px 0px 0px #312e81;
+        }
+
+        body.color-solid .exp-entry:nth-child(2) .exp-company {
+            color: #6366f1;
+        }
+
+        body.color-solid .exp-entry:nth-child(3) .exp-card {
+            border-color: #f59e0b;
+            box-shadow: 10px 10px 0px 0px #92400e;
+        }
+
+        body.color-solid .exp-entry:nth-child(3) .exp-card-header {
+            background: #f59e0b;
+            color: #fff;
+        }
+
+        body.color-solid .exp-entry:nth-child(3) .exp-card:hover {
+            box-shadow: 16px 16px 0px 0px #78350f;
+        }
+
+        body.color-solid .exp-entry:nth-child(3) .exp-company {
+            color: #f59e0b;
+        }
+
+
+        /* About Cards Color Overrides */
+        body.color-solid .about-card:nth-child(1) {
+            border-color: #8b5cf6;
+            box-shadow: 10px 10px 0px 0px #5b21b6;
+        }
+
+        body.color-solid .about-card:nth-child(1) .about-card-header {
+            background: #8b5cf6;
+            color: #fff;
+        }
+
+        body.color-solid .about-card:nth-child(1):hover {
+            box-shadow: 16px 16px 0px 0px #4c1d95;
+        }
+
+        body.color-solid .about-card:nth-child(2) {
+            border-color: #6366f1;
+            box-shadow: 10px 10px 0px 0px #4338ca;
+        }
+
+        body.color-solid .about-card:nth-child(2) .about-card-header {
+            background: #6366f1;
+            color: #fff;
+        }
+
+        body.color-solid .about-card:nth-child(2):hover {
+            box-shadow: 16px 16px 0px 0px #312e81;
+        }
+
+        /* Academic Cards Color Overrides */
+        body.color-solid .academic-card:nth-child(2) {
+            border-color: #10b981;
+            box-shadow: 10px 10px 0px 0px #065f46;
+        }
+
+        body.color-solid .academic-card:nth-child(2) .academic-card-header {
+            background: #10b981;
+            color: #fff;
+        }
+
+        body.color-solid .academic-card:nth-child(2):hover {
+            box-shadow: 16px 16px 0px 0px #064e3b;
+        }
+
+        body.color-solid .academic-card:nth-child(3) {
+            border-color: #06b6d4;
+            box-shadow: 10px 10px 0px 0px #0891b2;
+        }
+
+        body.color-solid .academic-card:nth-child(3) .academic-card-header {
+            background: #06b6d4;
+            color: #fff;
+        }
+
+        body.color-solid .academic-card:nth-child(3):hover {
+            box-shadow: 16px 16px 0px 0px #155e75;
+        }
+
+        /* Skill Cards Color Overrides */
+        body.color-solid .skill-card:nth-child(1) {
+            border-color: #3b82f6;
+            box-shadow: 10px 10px 0px 0px #1e40af;
+        }
+
+        body.color-solid .skill-card:nth-child(1) .skill-card-header {
+            background: #3b82f6;
+            color: #fff;
+        }
+
+        body.color-solid .skill-card:nth-child(1):hover {
+            box-shadow: 16px 16px 0px 0px #1e3a8a;
+        }
+
+        body.color-solid .skill-card:nth-child(2) {
+            border-color: #a855f7;
+            box-shadow: 10px 10px 0px 0px #7e22ce;
+        }
+
+        body.color-solid .skill-card:nth-child(2) .skill-card-header {
+            background: #a855f7;
+            color: #fff;
+        }
+
+        body.color-solid .skill-card:nth-child(2):hover {
+            box-shadow: 16px 16px 0px 0px #6b21a8;
+        }
+
+        body.color-solid .skill-card:nth-child(3) {
+            border-color: #10b981;
+            box-shadow: 10px 10px 0px 0px #047857;
+        }
+
+        body.color-solid .skill-card:nth-child(3) .skill-card-header {
+            background: #10b981;
+            color: #fff;
+        }
+
+        body.color-solid .skill-card:nth-child(3):hover {
+            box-shadow: 16px 16px 0px 0px #064e3b;
+        }
+
+        body.color-solid .skill-card:nth-child(4) {
+            border-color: #f59e0b;
+            box-shadow: 10px 10px 0px 0px #b45309;
+        }
+
+        body.color-solid .skill-card:nth-child(4) .skill-card-header {
+            background: #f59e0b;
+            color: #fff;
+        }
+
+        body.color-solid .skill-card:nth-child(4):hover {
+            box-shadow: 16px 16px 0px 0px #92400e;
+        }
+
+        body.color-solid .skill-card:nth-child(5) {
+            border-color: #ec4899;
+            box-shadow: 10px 10px 0px 0px #be185d;
+        }
+
+        body.color-solid .skill-card:nth-child(5) .skill-card-header {
+            background: #ec4899;
+            color: #fff;
+        }
+
+        body.color-solid .skill-card:nth-child(5):hover {
+            box-shadow: 16px 16px 0px 0px #9d174d;
+        }
+
+        body.color-solid .skill-card:nth-child(6) {
+            border-color: #06b6d4;
+            box-shadow: 10px 10px 0px 0px #0891b2;
+        }
+
+        body.color-solid .skill-card:nth-child(6) .skill-card-header {
+            background: #06b6d4;
+            color: #fff;
+        }
+
+        body.color-solid .skill-card:nth-child(6):hover {
+            box-shadow: 16px 16px 0px 0px #155e75;
+        }
+
+        /* Navigation Bar Color Overrides (Solid Theme Only) */
+        body.color-solid .nav-tab.online {
+            background: #a5f3fc;
+            color: #0e7490;
+        }
+
+        body.color-solid .nav-tab.online:hover {
+            background: #67e8f9;
+        }
+
+        body.color-solid .nav-tab.home {
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        body.color-solid .nav-tab.home:hover {
+            background: #333;
+        }
+
+        body.color-solid .nav-tab.about {
+            background: #fbbf24;
+            color: #1a1a1a;
+        }
+
+        body.color-solid .nav-tab.about:hover {
+            background: #f59e0b;
+        }
+
+        body.color-solid .nav-tab.work {
+            background: #34d399;
+            color: #1a1a1a;
+        }
+
+        body.color-solid .nav-tab.work:hover {
+            background: #10b981;
+        }
+
+        body.color-solid .nav-tab.skills {
+            background: #60a5fa;
+            color: #1a1a1a;
+        }
+
+        body.color-solid .nav-tab.skills:hover {
+            background: #3b82f6;
+        }
+
+        body.color-solid .nav-tab.connect {
+            background: #f87171;
+            color: #fff;
+        }
+
+        body.color-solid .nav-tab.connect:hover {
+            background: #ef4444;
+        }
+
+        body.color-solid .nav-tab.skills {
+            background: #60a5fa;
+            color: #1a1a1a;
+        }
+
+        body.color-solid .nav-tab.skills:hover {
+            background: #3b82f6;
         }
 
         /* ========== BOTTOM NAV BAR ========== */
@@ -1703,7 +2064,7 @@
             align-items: center;
             gap: 0;
             padding: 0;
-            transform: translateY(100%);
+            transform: translateY(0);
             transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
@@ -1729,6 +2090,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
+            z-index: 1;
         }
 
         .nav-tab:last-child {
@@ -1741,71 +2103,16 @@
         }
 
         .nav-tab:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 0 0 var(--text);
+            z-index: 10;
+            border-right: 2px solid var(--text);
         }
 
-        body.color-solid .nav-tab {
-            color: #fff;
-            border-color: #fff;
-        }
-
-        body.color-solid .nav-tab:last-child {
-            border-right: 2px solid #fff;
-        }
-
-        .nav-tab.online {
-            background: #a5f3fc;
-            color: #0e7490;
-        }
-
-        .nav-tab.online:hover {
-            background: #67e8f9;
-        }
-
-        .nav-tab.home {
-            background: #1a1a1a;
-            color: #fff;
-        }
-
-        .nav-tab.home:hover {
-            background: #333;
-        }
-
-        .nav-tab.about {
-            background: #fbbf24;
-            color: #1a1a1a;
-        }
-
-        .nav-tab.about:hover {
-            background: #f59e0b;
-        }
-
-        .nav-tab.work {
-            background: #34d399;
-            color: #1a1a1a;
-        }
-
-        .nav-tab.work:hover {
-            background: #10b981;
-        }
-
-        .nav-tab.skills {
-            background: #60a5fa;
-            color: #1a1a1a;
-        }
-
-        .nav-tab.skills:hover {
-            background: #3b82f6;
-        }
-
+        /* Black and White theme (default) highlights */
         .nav-tab.connect {
-            background: #f87171;
-            color: #1a1a1a;
-        }
-
-        .nav-tab.connect:hover {
-            background: #ef4444;
+            background: var(--text);
+            color: var(--bg);
         }
 
         /* ========== ANIMATIONS ========== */
@@ -1912,6 +2219,124 @@
             }
         }
 
+        /* ========== CTA SECTION ========== */
+        .cta-section {
+            position: relative;
+            padding: 60px 48px;
+            z-index: 10;
+        }
+
+        .cta-inner {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            color: var(--text);
+            padding: 40px 60px;
+            border: 3px solid var(--text);
+            box-shadow: 10px 10px 0px 0px var(--text);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        body.color-solid .cta-inner {
+            box-shadow: 15px 15px 0px 0px #7c3aed;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        #waveCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.6;
+        }
+
+        .cta-module-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            opacity: 0.5;
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .cta-open-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 700;
+            color: #22c55e;
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 24px;
+        }
+
+        .cta-headline {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 900;
+            line-height: 0.9;
+            margin-bottom: 24px;
+        }
+
+        .cta-headline span {
+            display: block;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn-primary,
+        .cta-btn-secondary {
+            padding: 18px 36px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn-primary {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        .cta-btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-btn-secondary {
+            border: 2px solid var(--text);
+            color: var(--text);
+        }
+
+        .cta-btn-secondary:hover {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        .cta-priority {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            opacity: 0.4;
+            z-index: 2;
+        }
+
         /* ========== RETRO PIXEL GHOST ========== */
         .pixel-ghost-container {
             display: flex;
@@ -1943,7 +2368,7 @@
         }
 
         body.color-solid .ghost-shadow {
-            background: rgba(26, 26, 26, 0.25);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         @keyframes floatGhost {
@@ -2213,7 +2638,8 @@
                             </svg>
                         </div>
                     </div>
-                    <p class="project-desc">Cloud-deployed fullstack portfolio with a Python Flask REST API backend, JSON CMS, and responsive frontend — hosted live on AWS EC2 with Elastic IP.</p>
+                    <p class="project-desc">Cloud-deployed fullstack portfolio with a Python Flask REST API backend,
+                        JSON CMS, and responsive frontend — hosted live on AWS EC2 with Elastic IP.</p>
                     <div class="project-tags">
                         <span class="project-tag">Python Flask</span>
                         <span class="project-tag">AWS EC2</span>
@@ -2392,6 +2818,90 @@
                             <span class="focus-tag">DATA ENGINEERING</span>
                             <span class="focus-tag">MLOPS</span>
                             <span class="focus-tag">PROBLEM SOLVING</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="experience-section" id="experience">
+        <div class="section-header">
+            <span class="section-label"> // [03] PROFESSIONAL_HISTORY</span>
+            <div class="section-title-row">
+                <h2 class="section-title">EXPERIENCE</h2>
+                <div class="title-line"></div>
+            </div>
+        </div>
+        <div class="experience-timeline">
+            <!-- Entry 1: SIST IEI (Current) -->
+            <div class="exp-entry current reveal">
+                <div class="exp-card">
+                    <div class="exp-card-header">
+                        <span>ROLE_RECORD_01</span>
+                        <span class="exp-status-badge current">● CURRENT</span>
+                    </div>
+                    <div class="exp-card-body">
+                        <div class="exp-role">Member</div>
+                        <div class="exp-company">SIST IEI Student Chapter</div>
+                        <div class="exp-duration">Feb 2025 – Present · Full-time · India</div>
+                        <p class="exp-desc">Active member of the Institution of Engineers India (IEI) student chapter at
+                            Sathyabama Institute of Science & Technology. Participating in technical events, workshops,
+                            and engineering innovation drives, contributing to a community of future engineers.</p>
+                        <div class="exp-tags">
+                            <span class="exp-tag">Technical Events</span>
+                            <span class="exp-tag">Engineering Community</span>
+                            <span class="exp-tag">Workshops</span>
+                            <span class="exp-tag">Innovation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Entry 2: Sathyabama (Current) -->
+            <div class="exp-entry current reveal">
+                <div class="exp-card">
+                    <div class="exp-card-header">
+                        <span>ROLE_RECORD_02</span>
+                        <span class="exp-status-badge current">● CURRENT</span>
+                    </div>
+                    <div class="exp-card-body">
+                        <div class="exp-role">Student — BE Computer Science Engineering</div>
+                        <div class="exp-company">Sathyabama Institute of Science & Technology, Chennai</div>
+                        <div class="exp-duration">Aug 2024 – Present · Full-time · Chennai, Tamil Nadu</div>
+                        <p class="exp-desc">Pursuing Bachelor of Engineering in Computer Science. Actively working on
+                            AI/ML projects, cloud data pipelines, and competitive programming. Building hands-on
+                            expertise in Python, big data tools, and cloud systems alongside academic coursework.</p>
+                        <div class="exp-tags">
+                            <span class="exp-tag">Python</span>
+                            <span class="exp-tag">Machine Learning</span>
+                            <span class="exp-tag">Data Engineering</span>
+                            <span class="exp-tag">Cloud</span>
+                            <span class="exp-tag">Competitive Programming</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Entry 3: NoviTech (Archive) -->
+            <div class="exp-entry reveal">
+                <div class="exp-card">
+                    <div class="exp-card-header">
+                        <span>ROLE_RECORD_03</span>
+                        <span class="exp-status-badge archive">ARCHIVE</span>
+                    </div>
+                    <div class="exp-card-body">
+                        <div class="exp-role">Artificial Intelligence Intern</div>
+                        <div class="exp-company">NoviTech R&D Pvt Ltd</div>
+                        <div class="exp-duration">Jul 2024 – Aug 2024 · 2 Months · Remote · Chennai, Tamil Nadu</div>
+                        <p class="exp-desc">Worked as an AI Intern focused on deep learning and computer vision.
+                            Developed and contributed to real-world AI solutions, seeking hands-on experience at the
+                            intersection of computer vision and intelligent systems. Completed the internship with a
+                            verified certificate of completion.</p>
+                        <div class="exp-tags">
+                            <span class="exp-tag">Deep Learning</span>
+                            <span class="exp-tag">Computer Vision</span>
+                            <span class="exp-tag">Python</span>
+                            <span class="exp-tag">AI Research</span>
                         </div>
                     </div>
                 </div>
@@ -2791,6 +3301,40 @@
             </a>
         </div>
     </section>
+    <!-- CTA SECTION -->
+    <section class="cta-section" id="cta">
+        <div class="cta-inner">
+            <canvas id="waveCanvas"></canvas>
+            <div class="cta-content">
+                <span class="cta-module-label">[MODULE: CTA_TERMINAL]</span>
+                <span class="cta-open-label">OPEN_FOR_COLLABORATION</span>
+                <div class="cta-headline">
+                    <span class="cta-headline-line1">LET'S BUILD</span>
+                    <span class="cta-headline-line2">SOMETHING.</span>
+                </div>
+                <div class="cta-buttons">
+                    <a href="connect.html" class="cta-btn-primary">
+                        INITIATE_CONTACT
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                    <a href="resume.pdf" target="_blank" class="cta-btn-secondary">
+                        DOWNLOAD_RESUME
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <span class="cta-priority">&lt;PRIORITY: HIGH&gt;</span>
+        </div>
+    </section>
 
     <!-- ========== CONNECT / FOOTER SECTION ========== -->
     <section class="connect-section" id="connect">
@@ -2878,7 +3422,7 @@
                 <a href="#about">/about</a>
                 <a href="#projects">/work</a>
                 <a href="#skills">/skills</a>
-                <a href="#connect">/connect</a>
+                <a href="connect.html">/connect</a>
             </div>
 
             <div class="connect-col">
@@ -2924,7 +3468,7 @@
             <span class="tab-num">04</span>
             <span>/SKILLS</span>
         </a>
-        <a href="#connect" class="nav-tab connect">
+        <a href="connect.html" class="nav-tab connect">
             <span class="tab-num">05</span>
             <span>/CONNECT</span>
         </a>
@@ -2971,11 +3515,9 @@
                 if (isColorSolid) {
                     document.body.classList.add('color-solid');
                     themeLabel.textContent = 'SYS: COLOR_SOLID';
-                    bottomNav.classList.add('visible');
                 } else {
                     document.body.classList.remove('color-solid');
                     themeLabel.textContent = 'SYS: BLACK_WHITE';
-                    bottomNav.classList.remove('visible');
                 }
             }, 150);
 
@@ -3180,6 +3722,41 @@
             const container = btn.closest('.social-cluster-container');
             container.classList.toggle('active');
         }
+
+        // ==================== WAVE GRID CANVAS ====================
+        const waveCanvas = document.getElementById('waveCanvas');
+        const wctx = waveCanvas.getContext('2d');
+        let ww, wh, waveTime = 0;
+
+        function resizeWave() {
+            ww = waveCanvas.width = waveCanvas.offsetWidth;
+            wh = waveCanvas.height = waveCanvas.offsetHeight;
+        }
+
+        function drawWave() {
+            wctx.clearRect(0, 0, ww, wh);
+            const cellW = 40, cellH = 40;
+            const cols = Math.ceil(ww / cellW) + 1;
+            const rows = Math.ceil(wh / cellH) + 1;
+            waveTime += 0.018;
+
+            for (let i = 0; i < cols; i++) {
+                for (let j = 0; j < rows; j++) {
+                    const x = i * cellW;
+                    const y = j * cellH;
+                    const wave = Math.sin(i * 0.3 - waveTime * 2) * Math.cos(j * 0.3 + waveTime);
+                    const alpha = (wave + 1) / 2;
+                    const col = isColorSolid ? `rgba(255,255,255,${alpha * 0.2})` : `rgba(26,26,26,${alpha * 0.2})`;
+                    wctx.fillStyle = col;
+                    wctx.fillRect(x, y, cellW - 2, cellH - 2);
+                }
+            }
+            requestAnimationFrame(drawWave);
+        }
+
+        window.addEventListener('resize', resizeWave);
+        resizeWave();
+        drawWave();
     </script>
 </body>
 

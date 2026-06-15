@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,6 +20,15 @@
             --text: #1a1a1a;
             --text-muted: #6b6b6b;
             --border: #d4d4cf;
+            --transition-speed: 0.5s;
+        }
+
+        body.color-solid {
+            --bg: #0f0f0f;
+            --bg-card: #1a1a1a;
+            --text: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.6);
+            --border: rgba(255, 255, 255, 0.15);
         }
 
         body {
@@ -27,6 +37,113 @@
             font-family: 'Inter', sans-serif;
             padding: 48px;
             min-height: 100vh;
+            padding-bottom: 120px;
+            transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+            cursor: crosshair;
+        }
+
+        /* ========== LIVE FEED & THEME TOGGLE ========== */
+        .live-feed {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+        }
+
+        .feed-bar {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--text);
+            color: var(--bg);
+            padding: 8px 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+        }
+
+        .feed-dot {
+            width: 10px;
+            height: 10px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulseDot 2s infinite;
+            box-shadow: 0 0 8px #22c55e;
+        }
+
+        @keyframes pulseDot {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(0.8);
+            }
+        }
+
+        .theme-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            border: 2px solid var(--text);
+            color: var(--text);
+            padding: 8px 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        .gear-icon {
+            width: 16px;
+            height: 16px;
+            animation: spinGear 4s linear infinite;
+        }
+
+        @keyframes spinGear {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .theme-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .theme-overlay.active {
+            opacity: 1;
         }
 
         .back-btn {
@@ -110,17 +227,143 @@
             box-shadow: 16px 16px 0px 0px var(--text);
         }
 
-        .project-detail-card:nth-child(1) { border-color: #6366f1; box-shadow: 10px 10px 0px 0px #4338ca; }
-        .project-detail-card:nth-child(2) { border-color: #3b82f6; box-shadow: 10px 10px 0px 0px #1e40af; }
-        .project-detail-card:nth-child(3) { border-color: #10b981; box-shadow: 10px 10px 0px 0px #065f46; }
-        .project-detail-card:nth-child(4) { border-color: #f59e0b; box-shadow: 10px 10px 0px 0px #92400e; }
-        .project-detail-card:nth-child(5) { border-color: #8b5cf6; box-shadow: 10px 10px 0px 0px #5b21b6; }
+        /* Project Card Color Overrides (Solid Theme Only) */
+        body.color-solid .project-detail-card:nth-child(1) {
+            border-color: #6366f1;
+            box-shadow: 10px 10px 0px 0px #4338ca;
+        }
 
-        .project-detail-card:nth-child(1):hover { border-color: #4f46e5; box-shadow: 16px 16px 0px 0px #312e81; }
-        .project-detail-card:nth-child(2):hover { border-color: #2563eb; box-shadow: 16px 16px 0px 0px #1e3a8a; }
-        .project-detail-card:nth-child(3):hover { border-color: #059669; box-shadow: 16px 16px 0px 0px #064e3b; }
-        .project-detail-card:nth-child(4):hover { border-color: #d97706; box-shadow: 16px 16px 0px 0px #78350f; }
-        .project-detail-card:nth-child(5):hover { border-color: #7c3aed; box-shadow: 16px 16px 0px 0px #4c1d95; }
+        body.color-solid .project-detail-card:nth-child(2) {
+            border-color: #3b82f6;
+            box-shadow: 10px 10px 0px 0px #1e40af;
+        }
+
+        body.color-solid .project-detail-card:nth-child(3) {
+            border-color: #10b981;
+            box-shadow: 10px 10px 0px 0px #065f46;
+        }
+
+        body.color-solid .project-detail-card:nth-child(4) {
+            border-color: #f59e0b;
+            box-shadow: 10px 10px 0px 0px #92400e;
+        }
+
+        body.color-solid .project-detail-card:nth-child(5) {
+            border-color: #8b5cf6;
+            box-shadow: 10px 10px 0px 0px #5b21b6;
+        }
+
+        body.color-solid .project-detail-card:nth-child(1):hover {
+            border-color: #4f46e5;
+            box-shadow: 16px 16px 0px 0px #312e81;
+        }
+
+        body.color-solid .project-detail-card:nth-child(2):hover {
+            border-color: #2563eb;
+            box-shadow: 16px 16px 0px 0px #1e3a8a;
+        }
+
+        body.color-solid .project-detail-card:nth-child(3):hover {
+            border-color: #059669;
+            box-shadow: 16px 16px 0px 0px #064e3b;
+        }
+
+        body.color-solid .project-detail-card:nth-child(4):hover {
+            border-color: #d97706;
+            box-shadow: 16px 16px 0px 0px #78350f;
+        }
+
+        body.color-solid .project-detail-card:nth-child(5):hover {
+            border-color: #7c3aed;
+            box-shadow: 16px 16px 0px 0px #4c1d95;
+        }
+
+        /* ========== BOTTOM NAV BAR ========== */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-tab {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 14px 24px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--text);
+            border: 2px solid var(--text);
+            border-right: none;
+            background: var(--bg);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-tab:last-child {
+            border-right: 2px solid var(--text);
+        }
+
+        .nav-tab:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 0 0 var(--text);
+            z-index: 10;
+            border-right: 2px solid var(--text);
+        }
+
+        .nav-tab.connect {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        /* Color Solid Theme Overrides for Nav */
+        body.color-solid .nav-tab.online {
+            background: #a5f3fc;
+            color: #0e7490;
+        }
+
+        body.color-solid .nav-tab.home {
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        body.color-solid .nav-tab.about {
+            background: #fbbf24;
+            color: #1a1a1a;
+        }
+
+        body.color-solid .nav-tab.work {
+            background: #34d399;
+            color: #1a1a1a;
+        }
+
+        body.color-solid .nav-tab.skills {
+            background: #60a5fa;
+            color: #1a1a1a;
+        }
+
+        body.color-solid .nav-tab.connect {
+            background: #f87171;
+            color: #fff;
+        }
+
+        body.color-solid .nav-tab {
+            border-color: #fff;
+        }
+
+        body.color-solid .nav-tab:last-child {
+            border-right: 2px solid #fff;
+        }
 
         .project-detail-header {
             display: flex;
@@ -259,14 +502,43 @@
         }
 
         @media (max-width: 768px) {
-            body { padding: 24px; }
-            .project-detail-body { padding: 20px; }
+            body {
+                padding: 24px;
+            }
+
+            .project-detail-body {
+                padding: 20px;
+            }
         }
     </style>
 </head>
+
 <body>
+    <!-- LIVE FEED & THEME TOGGLE -->
+    <div class="live-feed">
+        <div class="feed-bar">
+            <div class="feed-dot"></div>
+            <span>LIVE_FEED</span>
+            <span class="feed-divider">//</span>
+            <span id="feedClock">00:00 IST</span>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()">
+            <svg class="gear-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path
+                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                </path>
+            </svg>
+            <span id="themeLabel">SYS: BLACK_WHITE</span>
+        </button>
+    </div>
+
+    <div class="theme-overlay" id="themeOverlay"></div>
+
     <a href="index.html" class="back-btn">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
             <line x1="19" y1="12" x2="5" y2="12"></line>
             <polyline points="12 19 5 12 12 5"></polyline>
         </svg>
@@ -303,7 +575,10 @@
                 </div>
                 <div class="project-detail-links">
                     <a href="https://github.com/Vignesh16714" target="_blank" class="project-detail-link">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
                         VIEW CODE
                     </a>
                 </div>
@@ -319,7 +594,8 @@
             <div class="project-detail-body">
                 <h2 class="project-detail-title">FULLSTACK PORTFOLIO</h2>
                 <p class="project-detail-desc">
-                    Designed and deployed a fullstack personal portfolio website to showcase skills, projects, and career journey.
+                    Designed and deployed a fullstack personal portfolio website to showcase skills, projects, and
+                    career journey.
                     The application integrates a responsive frontend, dynamic backend, and a secure admin dashboard —
                     all hosted on AWS EC2 for real-time availability.
                 </p>
@@ -338,13 +614,15 @@
                     <div class="project-detail-section-title">☁ CLOUD SERVICES (AWS)</div>
                     <p class="project-detail-desc" style="margin-bottom:8px;">
                         EC2 (t3.micro) → Hosting Flask backend · IAM → Configured secure roles & CLI access<br>
-                        Security Groups → Managed inbound traffic rules · Elastic IP → Permanent static IP assignment<br>
+                        Security Groups → Managed inbound traffic rules · Elastic IP → Permanent static IP
+                        assignment<br>
                         SSH & SCP → Deployment & server management · systemd → Ensured Flask runs 24/7
                     </p>
                 </div>
 
                 <div class="project-detail-note">
-                    📌 Note: The live demo was hosted on AWS EC2 Free Tier and has now been archived. Full source code and deployment steps remain available on GitHub.
+                    📌 Note: The live demo was hosted on AWS EC2 Free Tier and has now been archived. Full source code
+                    and deployment steps remain available on GitHub.
                 </div>
 
                 <div class="project-detail-tags">
@@ -358,8 +636,12 @@
                     <span class="project-detail-tag">SSH / SCP</span>
                 </div>
                 <div class="project-detail-links">
-                    <a href="https://github.com/Vignesh16714/portfolio-fullstack" target="_blank" class="project-detail-link">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    <a href="https://github.com/Vignesh16714/portfolio-fullstack" target="_blank"
+                        class="project-detail-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
                         VIEW CODE
                     </a>
                 </div>
@@ -388,7 +670,10 @@
                 </div>
                 <div class="project-detail-links">
                     <a href="https://github.com/Vignesh16714" target="_blank" class="project-detail-link">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
                         VIEW CODE
                     </a>
                 </div>
@@ -418,7 +703,10 @@
                 </div>
                 <div class="project-detail-links">
                     <a href="https://github.com/Vignesh16714" target="_blank" class="project-detail-link">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
                         VIEW CODE
                     </a>
                 </div>
@@ -448,7 +736,10 @@
                 </div>
                 <div class="project-detail-links">
                     <a href="https://github.com/Vignesh16714" target="_blank" class="project-detail-link">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
                         VIEW CODE
                     </a>
                 </div>
@@ -456,5 +747,46 @@
         </div>
 
     </div>
+
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+        <a href="index.html#hero" class="nav-tab online"><span>ONLINE</span></a>
+        <a href="index.html#hero" class="nav-tab home"><span class="tab-num">/ 01</span><span>/HOME</span></a>
+        <a href="index.html#about" class="nav-tab about"><span class="tab-num">02</span><span>/ABOUT</span></a>
+        <a href="index.html#projects" class="nav-tab work"><span class="tab-num">03</span><span>/WORK</span></a>
+        <a href="index.html#skills" class="nav-tab skills"><span class="tab-num">04</span><span>/SKILLS</span></a>
+        <a href="connect.html" class="nav-tab connect"><span class="tab-num">/ 05</span><span>/CONNECT</span></a>
+    </nav>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('feedClock').textContent = h + ':' + m + ' IST';
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        let isColorSolid = false;
+        const themeOverlay = document.getElementById('themeOverlay');
+
+        function toggleTheme() {
+            isColorSolid = !isColorSolid;
+            themeOverlay.style.background = isColorSolid ? '#1a1a1a' : '#f5f5f0';
+            themeOverlay.classList.add('active');
+            setTimeout(() => {
+                if (isColorSolid) {
+                    document.body.classList.add('color-solid');
+                    document.getElementById('themeLabel').textContent = 'SYS: COLOR_SOLID';
+                } else {
+                    document.body.classList.remove('color-solid');
+                    document.getElementById('themeLabel').textContent = 'SYS: BLACK_WHITE';
+                }
+            }, 150);
+            setTimeout(() => { themeOverlay.classList.remove('active'); }, 400);
+        }
+    </script>
 </body>
+
 </html>

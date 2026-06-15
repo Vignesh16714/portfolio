@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,11 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap');
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         :root {
             --bg: #f5f5f0;
@@ -17,6 +22,100 @@
             --border: #d4d4cf;
             --blue-start: #6366f1;
             --blue-end: #3b82f6;
+            --transition-speed: 0.5s;
+        }
+
+        body.color-solid {
+            --bg: #0f0f0f;
+            --bg-card: #1a1a1a;
+            --text: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.6);
+            --border: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Skill Cards Color Overrides for Solid Theme */
+        body.color-solid .skill-card:nth-child(1) {
+            border-color: #3b82f6;
+            box-shadow: 10px 10px 0px 0px #1e40af;
+        }
+
+        body.color-solid .skill-card:nth-child(1) .skill-card-header {
+            background: #3b82f6;
+            color: #fff;
+        }
+
+        body.color-solid .skill-card:nth-child(1):hover {
+            box-shadow: 16px 16px 0px 0px #1e3a8a;
+        }
+
+        body.color-solid .skill-card:nth-child(2) {
+            border-color: #a855f7;
+            box-shadow: 10px 10px 0px 0px #7e22ce;
+        }
+
+        body.color-solid .skill-card:nth-child(2) .skill-card-header {
+            background: #a855f7;
+            color: #fff;
+        }
+
+        body.color-solid .skill-card:nth-child(2):hover {
+            box-shadow: 16px 16px 0px 0px #6b21a8;
+        }
+
+        body.color-solid .skill-card:nth-child(3) {
+            border-color: #10b981;
+            box-shadow: 10px 10px 0px 0px #047857;
+        }
+
+        body.color-solid .skill-card:nth-child(3) .skill-card-header {
+            background: #10b981;
+            color: #fff;
+        }
+
+        body.color-solid .skill-card:nth-child(3):hover {
+            box-shadow: 16px 16px 0px 0px #064e3b;
+        }
+
+        body.color-solid .skill-card:nth-child(4) {
+            border-color: #f59e0b;
+            box-shadow: 10px 10px 0px 0px #b45309;
+        }
+
+        body.color-solid .skill-card:nth-child(4) .skill-card-header {
+            background: #f59e0b;
+            color: #fff;
+        }
+
+        body.color-solid .skill-card:nth-child(4):hover {
+            box-shadow: 16px 16px 0px 0px #92400e;
+        }
+
+        body.color-solid .skill-card:nth-child(5) {
+            border-color: #ec4899;
+            box-shadow: 10px 10px 0px 0px #be185d;
+        }
+
+        body.color-solid .skill-card:nth-child(5) .skill-card-header {
+            background: #ec4899;
+            color: #fff;
+        }
+
+        body.color-solid .skill-card:nth-child(5):hover {
+            box-shadow: 16px 16px 0px 0px #9d174d;
+        }
+
+        body.color-solid .skill-card:nth-child(6) {
+            border-color: #06b6d4;
+            box-shadow: 10px 10px 0px 0px #0891b2;
+        }
+
+        body.color-solid .skill-card:nth-child(6) .skill-card-header {
+            background: #06b6d4;
+            color: #fff;
+        }
+
+        body.color-solid .skill-card:nth-child(6):hover {
+            box-shadow: 16px 16px 0px 0px #155e75;
         }
 
         body {
@@ -25,6 +124,113 @@
             font-family: 'Inter', sans-serif;
             padding: 48px;
             min-height: 100vh;
+            padding-bottom: 120px;
+            transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+            cursor: crosshair;
+        }
+
+        /* ========== LIVE FEED & THEME TOGGLE ========== */
+        .live-feed {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+        }
+
+        .feed-bar {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--text);
+            color: var(--bg);
+            padding: 8px 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+        }
+
+        .feed-dot {
+            width: 10px;
+            height: 10px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulseDot 2s infinite;
+            box-shadow: 0 0 8px #22c55e;
+        }
+
+        @keyframes pulseDot {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(0.8);
+            }
+        }
+
+        .theme-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            border: 2px solid var(--text);
+            color: var(--text);
+            padding: 8px 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        .gear-icon {
+            width: 16px;
+            height: 16px;
+            animation: spinGear 4s linear infinite;
+        }
+
+        @keyframes spinGear {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .theme-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .theme-overlay.active {
+            opacity: 1;
         }
 
         .back-btn {
@@ -44,9 +250,14 @@
             transition: all 0.3s ease;
         }
 
-        .back-btn:hover { background: #6366f1; color: #fff; }
+        .back-btn:hover {
+            background: #6366f1;
+            color: #fff;
+        }
 
-        .page-header { margin-bottom: 48px; }
+        .page-header {
+            margin-bottom: 48px;
+        }
 
         .page-label {
             font-family: 'JetBrains Mono', monospace;
@@ -74,8 +285,10 @@
         .page-title::after {
             content: '';
             position: absolute;
-            bottom: 0; left: 0;
-            width: 100%; height: 4px;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
             background: var(--text);
         }
 
@@ -103,6 +316,93 @@
             box-shadow: 16px 16px 0px 0px var(--text);
         }
 
+        /* ========== BOTTOM NAV BAR ========== */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-tab {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 14px 24px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--text);
+            border: 2px solid var(--text);
+            border-right: none;
+            background: var(--bg);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-tab:last-child {
+            border-right: 2px solid var(--text);
+        }
+
+        .nav-tab:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 0 0 var(--text);
+            z-index: 10;
+            border-right: 2px solid var(--text);
+        }
+
+        .nav-tab.connect {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        /* Color Solid Theme Overrides for Nav */
+        body.color-solid .nav-tab.online {
+            background: #a5f3fc;
+            color: #0e7490;
+        }
+
+        body.color-solid .nav-tab.home {
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        body.color-solid .nav-tab.about {
+            background: #fbbf24;
+            color: #1a1a1a;
+        }
+
+        body.color-solid .nav-tab.work {
+            background: #34d399;
+            color: #1a1a1a;
+        }
+
+        body.color-solid .nav-tab.skills {
+            background: #60a5fa;
+            color: #1a1a1a;
+        }
+
+        body.color-solid .nav-tab.connect {
+            background: #f87171;
+            color: #fff;
+        }
+
+        body.color-solid .nav-tab {
+            border-color: #fff;
+        }
+
+        body.color-solid .nav-tab:last-child {
+            border-right: 2px solid #fff;
+        }
+
         .skill-card-header {
             display: flex;
             align-items: center;
@@ -117,9 +417,14 @@
             text-transform: uppercase;
         }
 
-        .skill-card-header .hex-code { font-size: 11px; opacity: 0.6; }
+        .skill-card-header .hex-code {
+            font-size: 11px;
+            opacity: 0.6;
+        }
 
-        .skill-card-body { padding: 20px; }
+        .skill-card-body {
+            padding: 20px;
+        }
 
         .skill-item {
             display: flex;
@@ -130,14 +435,26 @@
             transition: all 0.3s ease;
         }
 
-        .skill-item:last-child { border-bottom: none; }
-        .skill-item:hover { padding-left: 8px; }
+        .skill-item:last-child {
+            border-bottom: none;
+        }
 
-        .skill-item-left { display: flex; align-items: center; gap: 10px; }
+        .skill-item:hover {
+            padding-left: 8px;
+        }
+
+        .skill-item-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
         .skill-icon {
-            width: 24px; height: 24px;
-            display: flex; align-items: center; justify-content: center;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 16px;
         }
 
@@ -156,8 +473,15 @@
             text-transform: uppercase;
         }
 
-        .skill-arrow { color: var(--text-muted); transition: all 0.3s ease; }
-        .skill-item:hover .skill-arrow { color: var(--text); transform: translateX(4px); }
+        .skill-arrow {
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover .skill-arrow {
+            color: var(--text);
+            transform: translateX(4px);
+        }
 
         /* ========== CERTS SECTION ========== */
         .certs-section {
@@ -190,8 +514,10 @@
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: 0; left: 0;
-            width: 100%; height: 4px;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
             background: var(--text);
         }
 
@@ -224,8 +550,13 @@
         }
 
         @keyframes scrollLeft {
-            0%   { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
         }
 
         /* ========== CERT CARD ========== */
@@ -238,7 +569,7 @@
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 8px 8px 0px 0px var(--text);
-            transition: transform 0.35s cubic-bezier(0.23,1,0.32,1), box-shadow 0.35s ease;
+            transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.35s ease;
             cursor: default;
         }
 
@@ -261,7 +592,9 @@
             text-transform: uppercase;
         }
 
-        .cert-card-header .cert-num { opacity: 0.5; }
+        .cert-card-header .cert-num {
+            opacity: 0.5;
+        }
 
         .cert-preview {
             width: 100%;
@@ -282,7 +615,9 @@
             transition: transform 0.4s ease;
         }
 
-        .cert-card:hover .cert-preview img { transform: scale(1.04); }
+        .cert-card:hover .cert-preview img {
+            transform: scale(1.04);
+        }
 
         .cert-card-body {
             padding: 16px;
@@ -315,14 +650,16 @@
             font-weight: 700;
             letter-spacing: 1px;
             color: var(--blue-start);
-            background: rgba(99,102,241,0.08);
-            border: 1px solid rgba(99,102,241,0.25);
+            background: rgba(99, 102, 241, 0.08);
+            border: 1px solid rgba(99, 102, 241, 0.25);
             padding: 3px 8px;
             border-radius: 4px;
             margin-bottom: 12px;
         }
 
-        .cert-no-cid { margin-bottom: 12px; }
+        .cert-no-cid {
+            margin-bottom: 12px;
+        }
 
         .view-cert-btn {
             display: flex;
@@ -353,16 +690,47 @@
 
         /* ========== RESPONSIVE ========== */
         @media (max-width: 768px) {
-            body { padding: 24px; }
-            .skills-grid { grid-template-columns: 1fr; }
-            .cert-card { width: 260px; }
+            body {
+                padding: 24px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cert-card {
+                width: 260px;
+            }
         }
     </style>
 </head>
+
 <body>
+    <!-- LIVE FEED & THEME TOGGLE -->
+    <div class="live-feed">
+        <div class="feed-bar">
+            <div class="feed-dot"></div>
+            <span>LIVE_FEED</span>
+            <span class="feed-divider">//</span>
+            <span id="feedClock">00:00 IST</span>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()">
+            <svg class="gear-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path
+                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                </path>
+            </svg>
+            <span id="themeLabel">SYS: BLACK_WHITE</span>
+        </button>
+    </div>
+
+    <div class="theme-overlay" id="themeOverlay"></div>
 
     <a href="index.html" class="back-btn">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
             <line x1="19" y1="12" x2="5" y2="12"></line>
             <polyline points="12 19 5 12 12 5"></polyline>
         </svg>
@@ -385,27 +753,33 @@
             </div>
             <div class="skill-card-body">
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">🐍</span><span class="skill-name">Python</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">🐍</span><span
+                            class="skill-name">Python</span></div>
                     <span class="skill-category">ML/AI FOCUS</span><span class="skill-arrow">›</span>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">🗄️</span><span class="skill-name">SQL</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">🗄️</span><span class="skill-name">SQL</span>
+                    </div>
                     <span class="skill-category">DATA QUERY</span><span class="skill-arrow">›</span>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">📊</span><span class="skill-name">R</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">📊</span><span class="skill-name">R</span>
+                    </div>
                     <span class="skill-category">STATISTICAL</span><span class="skill-arrow">›</span>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">💎</span><span class="skill-name">Scala</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">💎</span><span class="skill-name">Scala</span>
+                    </div>
                     <span class="skill-category">SPARK FOCUS</span><span class="skill-arrow">›</span>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">⚡</span><span class="skill-name">C++</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">⚡</span><span class="skill-name">C++</span>
+                    </div>
                     <span class="skill-category">SYSTEMS PROG</span><span class="skill-arrow">›</span>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">🐚</span><span class="skill-name">Bash / Shell</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">🐚</span><span class="skill-name">Bash /
+                            Shell</span></div>
                     <span class="skill-category">SCRIPTING</span><span class="skill-arrow">›</span>
                 </div>
             </div>
@@ -419,27 +793,33 @@
             </div>
             <div class="skill-card-body">
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">🧠</span><span class="skill-name">TensorFlow</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">🧠</span><span
+                            class="skill-name">TensorFlow</span></div>
                     <span class="skill-category">DEEP LEARNING</span><span class="skill-arrow">›</span>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">🔥</span><span class="skill-name">PyTorch</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">🔥</span><span
+                            class="skill-name">PyTorch</span></div>
                     <span class="skill-category">DL RESEARCH</span><span class="skill-arrow">›</span>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">🤖</span><span class="skill-name">Scikit-learn</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">🤖</span><span
+                            class="skill-name">Scikit-learn</span></div>
                     <span class="skill-category">ML MODELS</span><span class="skill-arrow">›</span>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">🤗</span><span class="skill-name">Hugging Face</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">🤗</span><span class="skill-name">Hugging
+                            Face</span></div>
                     <span class="skill-category">TRANSFORMERS</span><span class="skill-arrow">›</span>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">📈</span><span class="skill-name">MLflow</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">📈</span><span
+                            class="skill-name">MLflow</span></div>
                     <span class="skill-category">MLOPS TRACK</span><span class="skill-arrow">›</span>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">🎛️</span><span class="skill-name">Keras</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">🎛️</span><span
+                            class="skill-name">Keras</span></div>
                     <span class="skill-category">HIGH-LEVEL API</span><span class="skill-arrow">›</span>
                 </div>
             </div>
@@ -453,27 +833,33 @@
             </div>
             <div class="skill-card-body">
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">✨</span><span class="skill-name">Apache Spark</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">✨</span><span class="skill-name">Apache
+                            Spark</span></div>
                     <span class="skill-category">BIG DATA</span><span class="skill-arrow">›</span>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">💨</span><span class="skill-name">Apache Airflow</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">💨</span><span class="skill-name">Apache
+                            Airflow</span></div>
                     <span class="skill-category">ORCHESTRATION</span><span class="skill-arrow">›</span>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">🪵</span><span class="skill-name">Apache Kafka</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">🪵</span><span class="skill-name">Apache
+                            Kafka</span></div>
                     <span class="skill-category">STREAMING</span><span class="skill-arrow">›</span>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">🧱</span><span class="skill-name">dbt</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">🧱</span><span class="skill-name">dbt</span>
+                    </div>
                     <span class="skill-category">TRANSFORM</span><span class="skill-arrow">›</span>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">🔥</span><span class="skill-name">PySpark</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">🔥</span><span
+                            class="skill-name">PySpark</span></div>
                     <span class="skill-category">DATA PIPES</span><span class="skill-arrow">›</span>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">❄️</span><span class="skill-name">Snowflake</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">❄️</span><span
+                            class="skill-name">Snowflake</span></div>
                     <span class="skill-category">WAREHOUSE</span><span class="skill-arrow">›</span>
                 </div>
             </div>
@@ -487,19 +873,23 @@
             </div>
             <div class="skill-card-body">
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">☁️</span><span class="skill-name">AWS</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">☁️</span><span class="skill-name">AWS</span>
+                    </div>
                     <span class="skill-category">S3/LAMBDA/RDS</span><span class="skill-arrow">›</span>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">🌐</span><span class="skill-name">GCP</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">🌐</span><span class="skill-name">GCP</span>
+                    </div>
                     <span class="skill-category">BIGQUERY/GCS</span><span class="skill-arrow">›</span>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">⛅</span><span class="skill-name">Azure</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">⛅</span><span class="skill-name">Azure</span>
+                    </div>
                     <span class="skill-category">COMPUTE/DATA</span><span class="skill-arrow">›</span>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">🏗️</span><span class="skill-name">Terraform</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">🏗️</span><span
+                            class="skill-name">Terraform</span></div>
                     <span class="skill-category">INFRA AS CODE</span><span class="skill-arrow">›</span>
                 </div>
             </div>
@@ -513,23 +903,28 @@
             </div>
             <div class="skill-card-body">
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">🐳</span><span class="skill-name">Docker</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">🐳</span><span
+                            class="skill-name">Docker</span></div>
                     <span class="skill-category">CONTAINERS</span><span class="skill-arrow">›</span>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">☸️</span><span class="skill-name">Kubernetes</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">☸️</span><span
+                            class="skill-name">Kubernetes</span></div>
                     <span class="skill-category">ORCHESTRATION</span><span class="skill-arrow">›</span>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">🐙</span><span class="skill-name">Git / GitHub</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">🐙</span><span class="skill-name">Git /
+                            GitHub</span></div>
                     <span class="skill-category">VCS & PLATFORM</span><span class="skill-arrow">›</span>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">🔄</span><span class="skill-name">CI / CD</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">🔄</span><span class="skill-name">CI /
+                            CD</span></div>
                     <span class="skill-category">AUTOMATION</span><span class="skill-arrow">›</span>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">🐧</span><span class="skill-name">Linux / Unix</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">🐧</span><span class="skill-name">Linux /
+                            Unix</span></div>
                     <span class="skill-category">OS ENVIRONMENT</span><span class="skill-arrow">›</span>
                 </div>
             </div>
@@ -543,23 +938,28 @@
             </div>
             <div class="skill-card-body">
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">🐘</span><span class="skill-name">PostgreSQL</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">🐘</span><span
+                            class="skill-name">PostgreSQL</span></div>
                     <span class="skill-category">RDBMS</span><span class="skill-arrow">›</span>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">🍃</span><span class="skill-name">MongoDB</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">🍃</span><span
+                            class="skill-name">MongoDB</span></div>
                     <span class="skill-category">NOSQL</span><span class="skill-arrow">›</span>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">📕</span><span class="skill-name">Redis</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">📕</span><span class="skill-name">Redis</span>
+                    </div>
                     <span class="skill-category">CACHING</span><span class="skill-arrow">›</span>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">📈</span><span class="skill-name">BigQuery</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">📈</span><span
+                            class="skill-name">BigQuery</span></div>
                     <span class="skill-category">DATA WAREHOUSE</span><span class="skill-arrow">›</span>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-item-left"><span class="skill-icon">👁️</span><span class="skill-name">Cassandra</span></div>
+                    <div class="skill-item-left"><span class="skill-icon">👁️</span><span
+                            class="skill-name">Cassandra</span></div>
                     <span class="skill-category">COLUMN STORE</span><span class="skill-arrow">›</span>
                 </div>
             </div>
@@ -595,7 +995,8 @@
                         <div class="cert-issuer">HackerRank</div>
                         <div class="cert-cid">CID: A16A92C145B2</div>
                         <a href="cert-view.html?cert=1" class="view-cert-btn">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
                             </svg>
@@ -618,7 +1019,8 @@
                         <div class="cert-issuer">Skill India</div>
                         <div class="cert-no-cid"></div>
                         <a href="cert-view.html?cert=2" class="view-cert-btn">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
                             </svg>
@@ -641,7 +1043,8 @@
                         <div class="cert-issuer">Skill India</div>
                         <div class="cert-no-cid"></div>
                         <a href="cert-view.html?cert=3" class="view-cert-btn">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
                             </svg>
@@ -664,7 +1067,8 @@
                         <div class="cert-issuer">Skill India</div>
                         <div class="cert-no-cid"></div>
                         <a href="cert-view.html?cert=4" class="view-cert-btn">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
                             </svg>
@@ -687,7 +1091,8 @@
                         <div class="cert-issuer">Reliance Foundation</div>
                         <div class="cert-cid">CID: RFSA000518291</div>
                         <a href="cert-view.html?cert=5" class="view-cert-btn">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
                             </svg>
@@ -710,7 +1115,8 @@
                         <div class="cert-issuer">NPTEL</div>
                         <div class="cert-no-cid"></div>
                         <a href="cert-view.html?cert=6" class="view-cert-btn">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
                             </svg>
@@ -733,7 +1139,8 @@
                         <div class="cert-issuer">Reliance Foundation</div>
                         <div class="cert-cid">CID: RFSA000178772</div>
                         <a href="cert-view.html?cert=7" class="view-cert-btn">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
                             </svg>
@@ -746,13 +1153,18 @@
 
                 <div class="cert-card">
                     <div class="cert-card-header"><span>CERT_01</span><span class="cert-num">// HACKERRANK</span></div>
-                    <div class="cert-preview"><img src="images/certs/cert-1.png" alt="HackerRank Python Basic Certificate"></div>
+                    <div class="cert-preview"><img src="images/certs/cert-1.png"
+                            alt="HackerRank Python Basic Certificate"></div>
                     <div class="cert-card-body">
                         <div class="cert-title">Python (Basic)</div>
                         <div class="cert-issuer">HackerRank</div>
                         <div class="cert-cid">CID: A16A92C145B2</div>
                         <a href="cert-view.html?cert=1" class="view-cert-btn">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
                             VIEW CERT
                         </a>
                     </div>
@@ -760,13 +1172,18 @@
 
                 <div class="cert-card">
                     <div class="cert-card-header"><span>CERT_02</span><span class="cert-num">// SKILL INDIA</span></div>
-                    <div class="cert-preview"><img src="images/certs/cert-2.png" alt="Skill India Python for Data Science"></div>
+                    <div class="cert-preview"><img src="images/certs/cert-2.png"
+                            alt="Skill India Python for Data Science"></div>
                     <div class="cert-card-body">
                         <div class="cert-title">Python for Data Science</div>
                         <div class="cert-issuer">Skill India</div>
                         <div class="cert-no-cid"></div>
                         <a href="cert-view.html?cert=2" class="view-cert-btn">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
                             VIEW CERT
                         </a>
                     </div>
@@ -774,13 +1191,18 @@
 
                 <div class="cert-card">
                     <div class="cert-card-header"><span>CERT_03</span><span class="cert-num">// SKILL INDIA</span></div>
-                    <div class="cert-preview"><img src="images/certs/cert-3.png" alt="Skill India Security Analyst"></div>
+                    <div class="cert-preview"><img src="images/certs/cert-3.png" alt="Skill India Security Analyst">
+                    </div>
                     <div class="cert-card-body">
                         <div class="cert-title">Security Analyst Certificate Programme</div>
                         <div class="cert-issuer">Skill India</div>
                         <div class="cert-no-cid"></div>
                         <a href="cert-view.html?cert=3" class="view-cert-btn">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
                             VIEW CERT
                         </a>
                     </div>
@@ -794,21 +1216,31 @@
                         <div class="cert-issuer">Skill India</div>
                         <div class="cert-no-cid"></div>
                         <a href="cert-view.html?cert=4" class="view-cert-btn">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
                             VIEW CERT
                         </a>
                     </div>
                 </div>
 
                 <div class="cert-card">
-                    <div class="cert-card-header"><span>CERT_05</span><span class="cert-num">// RELIANCE FDN</span></div>
-                    <div class="cert-preview"><img src="images/certs/cert-5.png" alt="Reliance Foundation AI DevOps"></div>
+                    <div class="cert-card-header"><span>CERT_05</span><span class="cert-num">// RELIANCE FDN</span>
+                    </div>
+                    <div class="cert-preview"><img src="images/certs/cert-5.png" alt="Reliance Foundation AI DevOps">
+                    </div>
                     <div class="cert-card-body">
                         <div class="cert-title">AI - DevOps Engineering Foundation Course</div>
                         <div class="cert-issuer">Reliance Foundation</div>
                         <div class="cert-cid">CID: RFSA000518291</div>
                         <a href="cert-view.html?cert=5" class="view-cert-btn">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
                             VIEW CERT
                         </a>
                     </div>
@@ -816,27 +1248,38 @@
 
                 <div class="cert-card">
                     <div class="cert-card-header"><span>CERT_06</span><span class="cert-num">// NPTEL</span></div>
-                    <div class="cert-preview"><img src="images/certs/cert-6.png" alt="NPTEL Python for Data Science Elite"></div>
+                    <div class="cert-preview"><img src="images/certs/cert-6.png"
+                            alt="NPTEL Python for Data Science Elite"></div>
                     <div class="cert-card-body">
                         <div class="cert-title">Python for Data Science (Elite)</div>
                         <div class="cert-issuer">NPTEL</div>
                         <div class="cert-no-cid"></div>
                         <a href="cert-view.html?cert=6" class="view-cert-btn">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
                             VIEW CERT
                         </a>
                     </div>
                 </div>
 
                 <div class="cert-card">
-                    <div class="cert-card-header"><span>CERT_07</span><span class="cert-num">// RELIANCE FDN</span></div>
-                    <div class="cert-preview"><img src="images/certs/cert-7.png" alt="Reliance Foundation Python for Data Science"></div>
+                    <div class="cert-card-header"><span>CERT_07</span><span class="cert-num">// RELIANCE FDN</span>
+                    </div>
+                    <div class="cert-preview"><img src="images/certs/cert-7.png"
+                            alt="Reliance Foundation Python for Data Science"></div>
                     <div class="cert-card-body">
                         <div class="cert-title">Python for Data Science Course</div>
                         <div class="cert-issuer">Reliance Foundation</div>
                         <div class="cert-cid">CID: RFSA000178772</div>
                         <a href="cert-view.html?cert=7" class="view-cert-btn">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
                             VIEW CERT
                         </a>
                     </div>
@@ -849,5 +1292,45 @@
     </div>
     <!-- END CERTS SECTION -->
 
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+        <a href="index.html#hero" class="nav-tab online"><span>ONLINE</span></a>
+        <a href="index.html#hero" class="nav-tab home"><span class="tab-num">/ 01</span><span>/HOME</span></a>
+        <a href="index.html#about" class="nav-tab about"><span class="tab-num">02</span><span>/ABOUT</span></a>
+        <a href="index.html#projects" class="nav-tab work"><span class="tab-num">03</span><span>/WORK</span></a>
+        <a href="index.html#skills" class="nav-tab skills"><span class="tab-num">04</span><span>/SKILLS</span></a>
+        <a href="connect.html" class="nav-tab connect"><span class="tab-num">/ 05</span><span>/CONNECT</span></a>
+    </nav>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('feedClock').textContent = h + ':' + m + ' IST';
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        let isColorSolid = false;
+        const themeOverlay = document.getElementById('themeOverlay');
+
+        function toggleTheme() {
+            isColorSolid = !isColorSolid;
+            themeOverlay.style.background = isColorSolid ? '#1a1a1a' : '#f5f5f0';
+            themeOverlay.classList.add('active');
+            setTimeout(() => {
+                if (isColorSolid) {
+                    document.body.classList.add('color-solid');
+                    document.getElementById('themeLabel').textContent = 'SYS: COLOR_SOLID';
+                } else {
+                    document.body.classList.remove('color-solid');
+                    document.getElementById('themeLabel').textContent = 'SYS: BLACK_WHITE';
+                }
+            }, 150);
+            setTimeout(() => { themeOverlay.classList.remove('active'); }, 400);
+        }
+    </script>
 </body>
+
 </html>
